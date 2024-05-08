@@ -13,3 +13,21 @@
   height: 30px;
   background: url(~/src/assets/images/icons.webp) no-repeat;
 }
+
+.cellstyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border: dotted 1px;
+  border-color: black;
+}
+
+.boardstyle {
+  display: flex;
+  flex-wrap: wrap;
+  width: 640px;
+  height: 640px;
+  background-color: green;
+}
