@@ -50,19 +50,17 @@ const Home = () => {
   console.log(samplePos);
   return (
     <div className={styles.container}>
-       <div className={styles.boardstyle}>
-       {board.map((row, y) =>
-          row.map((color, x) => (
-            <div className={styles.cellstyle} key={`${x}-${y}`} onClick={() => bombMap(x, y)}>
-    <div className={styles.sellstyle}>
+      <div className={styles.table} />
+      <div className={styles.zoomable}>
+        <div className={styles.borderlefttop} />
+      </div>
 
-    </div>
       <div
         className={styles.samplestyle}
         style={{ backgroundPosition: `${-30 * samplePos}px 0px` }}
       />
       <button onClick={() => setSamplePos((P) => (P + 1) % 14)}>sample</button>
-    </div></div>
+    </div>
   );
 };
 

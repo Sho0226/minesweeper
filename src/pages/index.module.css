@@ -14,20 +14,18 @@
   background: url(~/src/assets/images/icons.webp) no-repeat;
 }
 
-.cellstyle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  border: dotted 1px;
-  border-color: black;
+.table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  background-color: transparent;
 }
 
-.boardstyle {
-  display: flex;
-  flex-wrap: wrap;
-  width: 640px;
-  height: 640px;
-  background-color: green;
+.borderlefttop {
+  width: 18px;
+  height: 16.5px;
+}
+
+.zoomable {
+  width: 252px;
+  height: 16.5px;
 }
