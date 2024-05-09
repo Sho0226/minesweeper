@@ -14,18 +14,32 @@
   background: url(~/src/assets/images/icons.webp) no-repeat;
 }
 
-.table {
-  border-spacing: 0;
-  border-collapse: collapse;
-  background-color: transparent;
+/* .minesweeperboard {
+width: 252px;
+height: 313.5px;
+background-color: blue; */
+
+.boardstyle {
+  display: flex;
+  flex-wrap: wrap;
+  width: 270px;
+  height: 270px;
+  background-color: #c6c6c6;
 }
 
-.borderlefttop {
-  width: 18px;
-  height: 16.5px;
+.cellstyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: solid 1px;
+  border-color: gray;
 }
 
-.zoomable {
-  width: 252px;
-  height: 16.5px;
-}
+/* #c6c6c6;うすい灰色 */
+
+/* gray;灰色 */
+
+/* width: 252px;
+  height: 313.5px; */

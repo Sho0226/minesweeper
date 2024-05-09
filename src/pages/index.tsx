@@ -45,15 +45,29 @@ const Home = () => {
   //  10  ->石+旗
   //  11  -> ボムセル
 
-  const board: number[][] = [];
+  const board: number[][] = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ];
 
   console.log(samplePos);
   return (
     <div className={styles.container}>
-      <div className={styles.table} />
-      <div className={styles.zoomable}>
-        <div className={styles.borderlefttop} />
+      {/* <div className={styles.minesweeperboard}> */}
+
+      <div className={styles.boardstyle}>
+        {board.map((row, y) =>
+          row.map((color, x) => <div className={styles.cellstyle} key={`${x}-${y}`} />),
+        )}
       </div>
+      {/* </div> */}
 
       <div
         className={styles.samplestyle}
