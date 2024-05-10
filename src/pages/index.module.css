@@ -11,7 +11,7 @@
 .samplestyle {
   width: 30px;
   height: 30px;
-  background: url(~/src/assets/images/icons.webp) no-repeat;
+  background: url('~/src/assets/images/icons.webp') no-repeat;
 }
 
 /* .minesweeperboard {
