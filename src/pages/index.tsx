@@ -168,14 +168,9 @@ const Home = () => {
               key={`${x}-${y}`}
               onClick={() => clickHandler(x, y)}
               style={{
-                backgroundPosition: bombMap[y][x] === 1 ? '-300px 0px' : undefined,
+                backgroundPosition: `${-30 * board[y][x]}px 0px`,
               }}
-            >
-              {/* ボムセルの中にサンプル要素を追加 */}
-              {bombMap[y][x] === 1 && (
-                <div className={styles.samplestyle} style={{ backgroundPosition: '-300px 0px' }} />
-              )}
-            </div>
+            />
           )),
         )}
       </div>
