@@ -3,9 +3,10 @@ import styles from './index.module.css';
 
 const Home = () => {
   const [samplePos, setSamplePos] = useState(0);
-  const bombCount = 10;
+
   // 0 -> ボム無し
   // 1 -> ボム有り
+
   const [bombMap, setBombMap] = useState([
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -17,6 +18,22 @@ const Home = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
+
+  const clickBomb = () => {
+    // bombMap のコピーを作成
+    const newBombMap = structuredClone(bombMap);
+
+    // 10個のボムを設置
+    for (let i = 0; i < 10; i++) {
+      const randomY = Math.floor(Math.random() * newBombMap.length);
+      const randomX = Math.floor(Math.random() * newBombMap[0].length);
+      newBombMap[randomY][randomX] = 1;
+    }
+
+    // bombMap を更新
+    setBombMap(newBombMap);
+  };
+
   // 0 ->未クリック
   // 1 ->左クリック
   // 2 ->はてな
@@ -68,6 +85,8 @@ const Home = () => {
         )}
       </div>
       {/* </div> */}
+
+      <button onClick={() => clickBomb()}>bomb</button>
 
       <div
         className={styles.samplestyle}
