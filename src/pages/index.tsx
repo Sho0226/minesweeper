@@ -90,6 +90,8 @@ const Home = () => {
     setBombMap(newBombMap);
   };
 
+  // if (newBombMap[][] === 1 )
+
   // 0 ->未クリック
   // 1 ->左クリック
   // 2 ->はてな
@@ -164,7 +166,7 @@ const Home = () => {
         {board.map((row, y) =>
           row.map((color, x) => (
             <div
-              className={`${styles.cellstyle} ${styles.samplestyle}`}
+              className={`${styles.cellstyle} ${styles.samplestyle} ${styles.stonestyle}`}
               key={`${x}-${y}`}
               style={{
                 backgroundPosition: `${-30 * board[y][x]}px 0px`,
