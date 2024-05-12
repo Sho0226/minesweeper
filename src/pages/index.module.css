@@ -27,7 +27,7 @@ background-color: blue; */
   background-color: #c6c6c6;
 }
 
-.boardstyle0 {
+.boardflame {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,6 +37,19 @@ background-color: blue; */
   border-right: 4px solid white;
   border-bottom: 4px solid white;
   border-left: 4px solid gray;
+}
+
+.boardflameflame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 320px;
+  background-color: #c6c6c6;
+  border-top: 4px solid white;
+  border-right: 4px solid gray;
+  border-bottom: 4px solid gray;
+  border-left: 4px solid white;
 }
 
 .cellstyle {

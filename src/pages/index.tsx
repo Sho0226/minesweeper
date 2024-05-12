@@ -162,19 +162,21 @@ const Home = () => {
   // console.log(samplePos);
   return (
     <div className={styles.container}>
-      <div className={styles.boardstyle0}>
-        <div className={styles.boardstyle}>
-          {board.map((row, y) =>
-            row.map((color, x) => (
-              <div
-                className={`${styles.cellstyle} ${styles.samplestyle} ${styles.stonestyle}`}
-                key={`${x}-${y}`}
-                style={{
-                  backgroundPosition: `${-30 * board[y][x]}px 0px`,
-                }}
-              />
-            )),
-          )}
+      <div className={styles.boardflameflame}>
+        <div className={styles.boardflame}>
+          <div className={styles.boardstyle}>
+            {board.map((row, y) =>
+              row.map((color, x) => (
+                <div
+                  className={`${styles.cellstyle} ${styles.samplestyle} ${styles.stonestyle}`}
+                  key={`${x}-${y}`}
+                  style={{
+                    backgroundPosition: `${-30 * board[y][x]}px 0px`,
+                  }}
+                />
+              )),
+            )}
+          </div>
         </div>
       </div>
       <button onClick={() => clickBomb()}>bomb</button>
