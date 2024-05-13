@@ -46,7 +46,7 @@ background-color: blue; */
 
 .topflame {
   width: 282px;
-  height: 60px;
+  height: 74px;
   margin-bottom: 10px;
   background-color: #c6c6c6;
   border-top: 6px solid gray;
@@ -60,7 +60,7 @@ background-color: blue; */
   align-items: center;
   justify-content: center;
   width: 310px;
-  height: 380px;
+  height: 400px;
   background-color: #c6c6c6;
   border-top: 6px solid white;
   border-right: 6px solid gray;
