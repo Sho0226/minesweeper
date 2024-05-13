@@ -63,6 +63,7 @@ const Home = () => {
 
   // bombMap のコピーを作成
   const clickHandler = (x: number, y: number) => {
+    const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
     const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
     let bombcountnow = 0;
     const bombcount = 10;
@@ -97,19 +98,35 @@ const Home = () => {
   };
 
   // console.table(newBombMap);
+
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
       if (newBombMap[i][j] === 1) {
         board[i][j] = 11;
       }
-      if (newUserIn[i][j] === 1) {
-        board[i][j] = 0;
+    }
+  }
+
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      for (const direct of directions) {
+        const [I, J] = direct;
+        if (board[i][j] !== 11) {
+          if (newUserIn[i][j] === 1) {
+            if (board[i + I] !== undefined) {
+              if (board[i + I][j + J] !== undefined) {
+                if (board[i + I][j + J] === 11) {
+                  board[i][j]++;
+                  board[i][j]++;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
   // ゲーム中は消す
-
-  const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
 
   // console.table(board);
 
