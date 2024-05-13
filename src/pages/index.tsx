@@ -163,19 +163,22 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <div className={styles.boardoutsideflame}>
-        <div className={styles.boardflame}>
-          <div className={styles.boardstyle}>
-            {board.map((row, y) =>
-              row.map((color, x) => (
-                <div
-                  className={`${styles.cellstyle} ${styles.samplestyle} ${styles.stonestyle}`}
-                  key={`${x}-${y}`}
-                  style={{
-                    backgroundPosition: `${-30 * board[y][x]}px 0px`,
-                  }}
-                />
-              )),
-            )}
+        <div className={styles.boardcontainer}>
+          <div className={styles.topflame} />
+          <div className={styles.boardflame}>
+            <div className={styles.boardstyle}>
+              {board.map((row, y) =>
+                row.map((color, x) => (
+                  <div
+                    className={`${styles.cellstyle} ${styles.samplestyle} ${styles.stonestyle}`}
+                    key={`${x}-${y}`}
+                    style={{
+                      backgroundPosition: `${-30 * board[y][x]}px 0px`,
+                    }}
+                  />
+                )),
+              )}
+            </div>
           </div>
         </div>
       </div>
