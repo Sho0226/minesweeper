@@ -51,6 +51,24 @@ const Home = () => {
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
   ];
 
+  const updateboard = () => {
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        if (newBombMap[i][j] === 1) {
+          board[i][j] = 11;
+        }
+
+        if (userIn[i][j] === 1) {
+          arounder(i, j);
+        } else if (userIn[i][j] === 2) {
+          board[i][j] = 9;
+        } else if (userIn[i][j] === 3) {
+          board[i][j] = 10;
+        }
+      }
+    }
+  };
+
   // bombMap のコピーを作成
   const clickHandler = (x: number, y: number) => {
     const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
@@ -79,33 +97,14 @@ const Home = () => {
     }
 
     console.table(userIn);
-
     console.table(board);
   };
 
-  const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
-  const isFailure = userIn.some((row, y) =>
-    row.some((input, x) => input === 1 && bombMap[y][x] === 1),
-  );
+  // const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
+  // const isFailure = userIn.some((row, y) =>
+  //   row.some((input, x) => input === 1 && bombMap[y][x] === 1),
+  // );
 
-  const updateboard = () => {
-    for (let i = 0; i < 9; i++) {
-      for (let j = 0; j < 9; j++) {
-        if (isFailure) {
-          if (newBombMap[i][j] === 1) {
-            board[i][j] = 11;
-          }
-        }
-        if (userIn[i][j] === 1) {
-          arounder(i, j);
-        } else if (userIn[i][j] === 2) {
-          board[i][j] = 9;
-        } else if (userIn[i][j] === 3) {
-          board[i][j] = 10;
-        }
-      }
-    }
-  };
   const arounder = (i: number, j: number) => {
     const directions = [
       [-1, 0],
@@ -117,14 +116,16 @@ const Home = () => {
       [0, 1],
       [-1, 1],
     ];
+    let aroundcount = 0;
     for (const direct of directions) {
       const [I, J] = direct;
-      let aroundcount = 0;
+
       if (board[i][j] !== 11) {
         if (board[i + I] !== undefined && board[i + I][j + J] !== undefined) {
-          if (board[i + I][j + J] === 11) {
+          if (bombMap[i + I][j + J] === 1) {
             aroundcount++;
           }
+          board[i][j] = aroundcount;
         }
       }
     }
@@ -140,7 +141,7 @@ const Home = () => {
   //  9   -> 石+はてな
   //  10  -> 石+旗
   //  11  -> ボムセル
-
+  updateboard();
   return (
     <div className={styles.container}>
       <div className={styles.boardoutsideflame}>
