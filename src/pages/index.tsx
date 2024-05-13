@@ -82,53 +82,51 @@ const Home = () => {
     console.log('0は', Num(0), '1は', Num(1));
     setBombMap(newBombMap);
 
-    // for (let a = 0; a < 9; a++) {
-    //   for (let b = 0; b < 9; b++) {
-
     if (board[y][x] === -1 && userIn[y][x] === 0) {
       newUserIn[y][x] = 1;
 
       setUserIn(newUserIn);
     }
 
-    //   }
-    // }
     console.table(userIn);
+
     console.table(board);
   };
-
-  // console.table(newBombMap);
-
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      if (newBombMap[i][j] === 1) {
-        board[i][j] = 11;
+  const updateboard = () => {
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        if (isFailure) {
+          if (newBombMap[i][j] === 1) {
+            board[i][j] = 11;
+          }
+        }
+        if (userIn[i][j] === 1) {
+          arounder(i, j);
+        } else if (userIn[i][j] === 2) {
+          board[i][j] = 9;
+        } else if (userIn[i][j] === 3) {
+          board[i][j] = 10;
+        }
       }
     }
-  }
-
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      for (const direct of directions) {
-        const [I, J] = direct;
-        if (board[i][j] !== 11) {
-          if (newUserIn[i][j] === 1) {
-            if (board[i + I] !== undefined) {
-              if (board[i + I][j + J] !== undefined) {
-                if (board[i + I][j + J] === 11) {
-                  board[i][j]++;
-                  board[i][j]++;
-                }
-              }
-            }
+  };
+  const arounder = (i: number, j: number) => {
+    for (const direct of directions) {
+      const [I, J] = direct;
+      let aroundcount = 0;
+      if (board[i][j] !== 11) {
+        if (board[i + I] !== undefined && board[i + I][j + J] !== undefined) {
+          if (board[i + I][j + J] === 11) {
+            aroundcount += 1;
           }
         }
       }
     }
-  }
-  // ゲーム中は消す
+  };
 
-  // console.table(board);
+  // console.table(newBombMap);
+
+  // ゲーム中は消す
 
   const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
   const isFailure = userIn.some((row, y) =>
