@@ -44,14 +44,6 @@ const Home = () => {
     [0, 1],
     [-1, 1],
   ];
-  // for (let a = 0; a < bombMap.length; a++) {
-  //   for (let b = 0; b < bombMap[a].length; b++) {
-
-  //     console.log();
-  //   }
-  // }
-
-  // console.table(bombMap);
   const board: number[][] = [
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
@@ -65,22 +57,23 @@ const Home = () => {
   ];
 
   // bombMap のコピーを作成
-  const bombclick = (x: number, y: number) => {
+  const clickHandler = (x: number, y: number) => {
     const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
     let bombcountnow = 0;
     const bombcount = 10;
     // 10個のボムを設置
-    while (bombcountnow < bombcount) {
-      const randomY = Math.floor(Math.random() * newBombMap.length);
-      const randomX = Math.floor(Math.random() * newBombMap[0].length);
-      if (newBombMap[randomY][randomX] !== 1 && !(y === randomY && x === randomX)) {
-        newBombMap[randomY][randomX] = 1;
-        bombcountnow++;
+    if (NumBoard(10) === 0) {
+      while (bombcountnow < bombcount) {
+        const randomY = Math.floor(Math.random() * newBombMap.length);
+        const randomX = Math.floor(Math.random() * newBombMap[0].length);
+        if (newBombMap[randomY][randomX] !== 1 && !(y === randomY && x === randomX)) {
+          newBombMap[randomY][randomX] = 1;
+          bombcountnow++;
+        }
       }
     }
 
     console.log('0は', Num(0), '1は', Num(1));
-    // console.table(newBombMap);
     // bombMap を更新
 
     setBombMap(newBombMap);
@@ -94,33 +87,13 @@ const Home = () => {
       }
     }
   }
+  const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
 
   console.table(board);
   // 0 ->未クリック
   // 1 ->左クリック
   // 2 ->はてな
   // 3 ->旗
-
-  // const clickHandler = (x: number, y: number) => {
-  //   if (userIn[y][x] === 0) {
-  //     let count = 0;
-  //     for (const direct of directions) {
-  //       const [x1, y1] = direct;
-  //       if (newUserIn[y + y1] !== undefined && newUserIn[y + y1][x + x1] !== undefined) {
-  //         if (bombMap[y + y1][x + x1] === 1) {
-  //           count++;
-  //         }
-  //       }
-  //     }
-
-  //     // 新しい userIn 配列を生成して更新する
-
-  //     board[y][x] = count;
-  //   }
-  // };
-
-  // console.log(userIn);
-  // console.table(userIn);
 
   const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
   const isFailure = userIn.some((row, y) =>
@@ -136,28 +109,6 @@ const Home = () => {
   //  10  -> 石+旗
   //  11  -> ボムセル
 
-  //   let zeroList: { x: number; y: number }[]
-  // for () {
-  //   zeroList = // board + directions + userInputs + bombMap
-  // }
-  // let openedCount: number
-  // for () {
-  //   openedCount = // board
-  // }
-  // const isSuccess = // openedCount + bombCount
-  // let isFailure: boolean
-  // for () {
-  //   isFialure = // userInputs + bombMap
-  // }
-  // let isStarted: boolean
-  // for () {
-  //   isStarted = // userInputs
-  // }
-
-  // console.table(board);
-
-  // console.log(samplePos);
-
   return (
     <div className={styles.container}>
       <div className={styles.boardoutsideflame}>
@@ -166,13 +117,13 @@ const Home = () => {
           <div className={styles.boardflame}>
             <div className={styles.boardstyle}>
               {board.map((row, y) =>
-                row.map((color, x) => (
+                row.map((cell, x) => (
                   <div
-                    className={`${styles.cellstyle} ${styles.samplestyle} ${styles.stonestyle}`}
+                    className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : ''} `}
                     key={`${x}-${y}`}
-                    onClick={() => bombclick(x, y)}
+                    onClick={() => clickHandler(x, y)}
                     style={{
-                      backgroundPosition: `${-30 * board[y][x]}px 0px`,
+                      backgroundPosition: `${-30 * cell}px 0px`,
                     }}
                   />
                 )),
