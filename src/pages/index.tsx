@@ -69,13 +69,12 @@ const Home = () => {
     }
   };
 
-  // bombMap のコピーを作成
   const clickHandler = (x: number, y: number) => {
     const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
     const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
     let bombcountnow = 0;
     const bombcount = 10;
-    // 10個のボムを設置
+
     if (NumBoard(11) === 0) {
       while (bombcountnow < bombcount) {
         const randomY = Math.floor(Math.random() * newBombMap.length);
@@ -131,10 +130,6 @@ const Home = () => {
     }
   };
 
-  // console.table(newBombMap);
-
-  // ゲーム中は消す
-
   // -1   -> 石
   //  0   -> 画像無しセル
   //  1~8 -> 数字セル
@@ -166,7 +161,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* 外側のdivで囲まれたサンプル要素 */}
       <div
         className={styles.samplestyle}
         style={{ backgroundPosition: `${-30 * samplePos}px 0px` }}
