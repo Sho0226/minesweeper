@@ -39,16 +39,6 @@ const Home = () => {
   const newBombMap = structuredClone(bombMap);
   const newUserIn = structuredClone(userIn);
 
-  const directions = [
-    [-1, 0],
-    [-1, -1],
-    [0, -1],
-    [1, -1],
-    [1, 0],
-    [1, 1],
-    [0, 1],
-    [-1, 1],
-  ];
   const board: number[][] = [
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
@@ -92,6 +82,12 @@ const Home = () => {
 
     console.table(board);
   };
+
+  const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
+  const isFailure = userIn.some((row, y) =>
+    row.some((input, x) => input === 1 && bombMap[y][x] === 1),
+  );
+
   const updateboard = () => {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
@@ -111,13 +107,23 @@ const Home = () => {
     }
   };
   const arounder = (i: number, j: number) => {
+    const directions = [
+      [-1, 0],
+      [-1, -1],
+      [0, -1],
+      [1, -1],
+      [1, 0],
+      [1, 1],
+      [0, 1],
+      [-1, 1],
+    ];
     for (const direct of directions) {
       const [I, J] = direct;
       let aroundcount = 0;
       if (board[i][j] !== 11) {
         if (board[i + I] !== undefined && board[i + I][j + J] !== undefined) {
           if (board[i + I][j + J] === 11) {
-            aroundcount += 1;
+            aroundcount++;
           }
         }
       }
@@ -127,11 +133,6 @@ const Home = () => {
   // console.table(newBombMap);
 
   // ゲーム中は消す
-
-  const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
-  const isFailure = userIn.some((row, y) =>
-    row.some((input, x) => input === 1 && bombMap[y][x] === 1),
-  );
 
   // -1   -> 石
   //  0   -> 画像無しセル
