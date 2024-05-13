@@ -71,7 +71,7 @@ const Home = () => {
 
   const clickHandler = (x: number, y: number) => {
     const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
-    const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
+    // const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
     let bombcountnow = 0;
     const bombcount = 10;
 
