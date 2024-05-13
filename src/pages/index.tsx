@@ -162,7 +162,7 @@ const Home = () => {
   // console.log(samplePos);
   return (
     <div className={styles.container}>
-      <div className={styles.boardflameflame}>
+      <div className={styles.boardoutsideflame}>
         <div className={styles.boardflame}>
           <div className={styles.boardstyle}>
             {board.map((row, y) =>

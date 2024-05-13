@@ -29,10 +29,12 @@ background-color: blue; */
 
 .boardflame {
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 282px;
+
+  /* align-items: center;
+  justify-content: center; */
   height: 282px;
+  margin-top: 70px;
   background-color: #c6c6c6;
   border-top: 6px solid gray;
   border-right: 6px solid white;
@@ -40,11 +42,12 @@ background-color: blue; */
   border-left: 6px solid gray;
 }
 
-.boardflameflame {
+.boardoutsideflame {
   display: flex;
+  align-items: center;
   justify-content: center;
   width: 310px;
-  height: 350px;
+  height: 380px;
   background-color: #c6c6c6;
   border-top: 6px solid white;
   border-right: 6px solid gray;
@@ -62,14 +65,14 @@ background-color: blue; */
   border-color: gray;
 }
 
-.stonestyle {
+/* .stonestyle {
   width: 30px;
   height: 30px;
   border-top: 4px solid white;
   border-right: 4px solid gray;
   border-bottom: 4px solid gray;
   border-left: 4px solid white;
-}
+} */
 
 /* #c6c6c6;うすい灰色 */
 
@@ -78,4 +81,6 @@ background-color: blue; */
 /* width: 252px;
   height: 313.5px; */
 
-/* CSSのorderプロパティを使用して、フレックスアイテムの順序を制御します。デフォルトでは、orderの値は0ですが、これを負の値に設定することで、他のフレックスアイテムよりも後ろに移動させることができます。 */
+/* CSSのorderプロパティを使用して、フレックスアイテムの順序を制御します。
+デフォルトでは、orderの値は0ですが、これを負の値に設定することで、
+他のフレックスアイテムよりも後ろに移動させることができます。 */
