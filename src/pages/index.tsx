@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import styles from './index.module.css';
-import { table } from 'console';
 
 const Home = () => {
   const [samplePos, setSamplePos] = useState(0);
 
   // 0 -> ボム無し
   // 1 -> ボム有り
-  const bombcount = 10;
 
   const [bombMap, setBombMap] = useState([
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -32,20 +30,7 @@ const Home = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
-  const board: number[][] = [
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-  ];
-  console.table(board);
 
-  const newBoard = structuredClone(board);
   const newBombMap = structuredClone(bombMap);
   const newUserIn = structuredClone(userIn);
 
@@ -67,53 +52,73 @@ const Home = () => {
   // }
 
   // console.table(bombMap);
+  const board: number[][] = [
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+  ];
 
-  const clickBomb = () => {
-    // bombMap のコピーを作成
-
+  // bombMap のコピーを作成
+  const bombclick = (x: number, y: number) => {
     const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
-    const bombcount = 10;
     let bombcountnow = 0;
+    const bombcount = 10;
     // 10個のボムを設置
     while (bombcountnow < bombcount) {
       const randomY = Math.floor(Math.random() * newBombMap.length);
       const randomX = Math.floor(Math.random() * newBombMap[0].length);
-      if (newBombMap[randomY][randomX] !== 1) {
+      if (newBombMap[randomY][randomX] !== 1 && !(y === randomY && x === randomX)) {
         newBombMap[randomY][randomX] = 1;
         bombcountnow++;
       }
     }
 
     console.log('0は', Num(0), '1は', Num(1));
-    console.table(newBombMap);
+    // console.table(newBombMap);
     // bombMap を更新
+
     setBombMap(newBombMap);
   };
 
-  // if (newBombMap[][] === 1 )
+  console.table(newBombMap);
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (newBombMap[i][j] === 1) {
+        board[i][j] = 10;
+      }
+    }
+  }
 
+  console.table(board);
   // 0 ->未クリック
   // 1 ->左クリック
   // 2 ->はてな
   // 3 ->旗
 
-  const clickHandler = (x: number, y: number) => {
-    if (userIn[y][x] === 0) {
-      let count = 0;
-      for (const direct of directions) {
-        const [x1, y1] = direct;
-        if (newUserIn[y + y1] !== undefined && newUserIn[y + y1][x + x1] !== undefined) {
-          if (bombMap[y + y1][x + x1] === 1) {
-            count++;
-          }
-        }
-      }
+  // const clickHandler = (x: number, y: number) => {
+  //   if (userIn[y][x] === 0) {
+  //     let count = 0;
+  //     for (const direct of directions) {
+  //       const [x1, y1] = direct;
+  //       if (newUserIn[y + y1] !== undefined && newUserIn[y + y1][x + x1] !== undefined) {
+  //         if (bombMap[y + y1][x + x1] === 1) {
+  //           count++;
+  //         }
+  //       }
+  //     }
 
-      // 新しい userIn 配列を生成して更新する
+  //     // 新しい userIn 配列を生成して更新する
 
-      board[y][x] = count;
-    }
-  };
+  //     board[y][x] = count;
+  //   }
+  // };
+
   // console.log(userIn);
   // console.table(userIn);
 
@@ -130,14 +135,6 @@ const Home = () => {
   //  9   -> 石+はてな
   //  10  -> 石+旗
   //  11  -> ボムセル
-
-  for (let y = 0; y < newBoard.length; y++) {
-    for (let x = 0; x < newBoard[y].length; x++) {
-      if (newBombMap[y][x] === 1) {
-        newBoard[y][x] = 11; // ボムセルの値を設定
-      }
-    }
-  }
 
   //   let zeroList: { x: number; y: number }[]
   // for () {
@@ -160,6 +157,7 @@ const Home = () => {
   // console.table(board);
 
   // console.log(samplePos);
+
   return (
     <div className={styles.container}>
       <div className={styles.boardoutsideflame}>
@@ -172,6 +170,7 @@ const Home = () => {
                   <div
                     className={`${styles.cellstyle} ${styles.samplestyle} ${styles.stonestyle}`}
                     key={`${x}-${y}`}
+                    onClick={() => bombclick(x, y)}
                     style={{
                       backgroundPosition: `${-30 * board[y][x]}px 0px`,
                     }}
@@ -182,7 +181,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <button onClick={() => clickBomb()}>bomb</button>
 
       {/* 外側のdivで囲まれたサンプル要素 */}
       <div
