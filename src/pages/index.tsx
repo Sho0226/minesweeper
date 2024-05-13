@@ -86,7 +86,7 @@ const Home = () => {
       }
     }
 
-    console.log('0は', Num(0), '1は', Num(1));
+    // console.log('0は', Num(0), '1は', Num(1));
     setBombMap(newBombMap);
 
     if (board[y][x] === -1 && userIn[y][x] === 0) {
@@ -95,8 +95,8 @@ const Home = () => {
       setUserIn(newUserIn);
     }
 
-    console.table(userIn);
-    console.table(board);
+    // console.table(userIn);
+    // console.table(board);
   };
 
   // const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
