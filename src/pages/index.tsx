@@ -31,6 +31,11 @@ const Home = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
 
+  // 0 ->未クリック
+  // 1 ->左クリック
+  // 2 ->はてな
+  // 3 ->旗
+
   const newBombMap = structuredClone(bombMap);
   const newUserIn = structuredClone(userIn);
 
@@ -62,7 +67,7 @@ const Home = () => {
     let bombcountnow = 0;
     const bombcount = 10;
     // 10個のボムを設置
-    if (NumBoard(10) === 0) {
+    if (NumBoard(11) === 0) {
       while (bombcountnow < bombcount) {
         const randomY = Math.floor(Math.random() * newBombMap.length);
         const randomX = Math.floor(Math.random() * newBombMap[0].length);
@@ -74,33 +79,44 @@ const Home = () => {
     }
 
     console.log('0は', Num(0), '1は', Num(1));
-    // bombMap を更新
-
     setBombMap(newBombMap);
+
+    // for (let a = 0; a < 9; a++) {
+    //   for (let b = 0; b < 9; b++) {
+
+    if (board[y][x] === -1 && userIn[y][x] === 0) {
+      newUserIn[y][x] = 1;
+
+      setUserIn(newUserIn);
+    }
+
+    //   }
+    // }
+    console.table(userIn);
+    console.table(board);
   };
 
-  console.table(newBombMap);
+  // console.table(newBombMap);
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
       if (newBombMap[i][j] === 1) {
-        board[i][j] = 10;
+        board[i][j] = 11;
+      }
+      if (newUserIn[i][j] === 1) {
+        board[i][j] = 0;
       }
     }
   }
+  // ゲーム中は消す
+
   const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
 
-  console.table(board);
-  // 0 ->未クリック
-  // 1 ->左クリック
-  // 2 ->はてな
-  // 3 ->旗
+  // console.table(board);
 
   const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
   const isFailure = userIn.some((row, y) =>
     row.some((input, x) => input === 1 && bombMap[y][x] === 1),
   );
-
-  const input = () => {};
 
   // -1   -> 石
   //  0   -> 画像無しセル
@@ -123,7 +139,7 @@ const Home = () => {
                     key={`${x}-${y}`}
                     onClick={() => clickHandler(x, y)}
                     style={{
-                      backgroundPosition: `${-30 * cell}px 0px`,
+                      backgroundPosition: `${-30 * (cell - 1)}px 0px`,
                     }}
                   />
                 )),
