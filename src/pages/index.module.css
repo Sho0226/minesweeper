@@ -45,6 +45,9 @@ background-color: blue; */
 }
 
 .topflame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 282px;
   height: 74px;
   margin-bottom: 10px;
@@ -86,6 +89,28 @@ background-color: blue; */
   border-right: 4px solid gray;
   border-bottom: 4px solid gray;
   border-left: 4px solid white;
+}
+
+.resetoutflame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: gray;
+}
+
+.resetflame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: #c6c6c6;
+  border-top: 5px solid white;
+  border-right: 5px solid gray;
+  border-bottom: 5px solid gray;
+  border-left: 5px solid white;
 }
 
 .reset {
