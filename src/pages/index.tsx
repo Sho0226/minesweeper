@@ -103,8 +103,8 @@ const Home = () => {
   // const isFailure = userIn.some((row, y) =>
   //   row.some((input, x) => input === 1 && bombMap[y][x] === 1),
   // );
-
   const arounder = (i: number, j: number) => {
+    console.log(1);
     const directions = [
       [-1, 0],
       [-1, -1],
@@ -115,16 +115,46 @@ const Home = () => {
       [0, 1],
       [-1, 1],
     ];
+
+    // 周囲のボムの数をカウントするための変数
     let aroundcount = 0;
+
+    // 全ての方向に対して処理を繰り返す
     for (const direct of directions) {
       const [I, J] = direct;
 
-      if (board[i][j] !== 11) {
-        if (board[i + I] !== undefined && board[i + I][j + J] !== undefined) {
+      // ボードの範囲内であることを確認
+      if (j + J >= 0 && j + J < board.length && i + I >= 0 && j + J < board[0].length) {
+        // 周囲にボムがある場合はカウントを増やす
+        if (bombMap[i + I] !== undefined && bombMap[i + I][j + J] !== undefined) {
           if (bombMap[i + I][j + J] === 1) {
             aroundcount++;
           }
           board[i][j] = aroundcount;
+        }
+      }
+    }
+    console.log(4);
+    // 周囲のボムの数を設定
+    board[i][j] = aroundcount;
+    console.log(aroundcount, '回');
+    console.table(userIn);
+
+    if (aroundcount === 0) {
+      console.log(3);
+      userIn[i][j] = 1;
+      for (const direct of directions) {
+        const [I, J] = direct;
+        // ボードの範囲内であることを確認
+        if (j + J >= 0 && j + J < board.length && i + I >= 0 && i + I < board[0].length) {
+          // 未探索のセルに対して再帰的に arounder を呼び出す
+          if (userIn[i + I][j + J] === 0) {
+            if (board[i + I][j + J] === -1) {
+              console.log(2);
+              board[i + I][j + J] = aroundcount + 1;
+              arounder(i + I, j + J);
+            }
+          }
         }
       }
     }
