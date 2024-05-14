@@ -99,10 +99,6 @@ const Home = () => {
     // console.table(board);
   };
 
-  // const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
-  // const isFailure = userIn.some((row, y) =>
-  //   row.some((input, x) => input === 1 && bombMap[y][x] === 1),
-  // );
   const arounder = (i: number, j: number) => {
     console.log(1);
     const directions = [
@@ -159,6 +155,10 @@ const Home = () => {
       }
     }
   };
+  const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
+  const isFailure = userIn.some((row, y) =>
+    row.some((input, x) => input === 1 && bombMap[y][x] === 1),
+  );
 
   // -1   -> 石
   //  0   -> 画像無しセル
@@ -171,7 +171,9 @@ const Home = () => {
     <div className={styles.container}>
       <div className={styles.boardoutsideflame}>
         <div className={styles.boardcontainer}>
-          <div className={styles.topflame} />
+          <div className={styles.topflame}>
+            <div className={styles.reset} />
+          </div>
           <div className={styles.boardflame}>
             <div className={styles.boardstyle}>
               {board.map((row, y) =>

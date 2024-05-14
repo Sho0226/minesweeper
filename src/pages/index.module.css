@@ -88,6 +88,12 @@ background-color: blue; */
   border-left: 4px solid white;
 }
 
+.reset {
+  width: 30px;
+  height: 30px;
+  background: url('~/src/assets/images/icons.webp') no-repeat;
+}
+
 /* #c6c6c6;うすい灰色 */
 
 /* gray;灰色 */
