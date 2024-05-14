@@ -97,6 +97,7 @@ background-color: blue; */
   justify-content: center;
   width: 48px;
   height: 48px;
+  margin: 0 32px;
   background-color: gray;
 }
 
@@ -104,8 +105,8 @@ background-color: blue; */
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 45px;
+  height: 45px;
   background-color: #c6c6c6;
   border-top: 5px solid white;
   border-right: 5px solid gray;
@@ -117,6 +118,26 @@ background-color: blue; */
   width: 30px;
   height: 30px;
   background: url('~/src/assets/images/icons.webp') no-repeat;
+}
+
+.flagflame {
+  width: 72px;
+  height: 48px;
+  background-color: #c6c6c6;
+  border-top: 2px solid gray;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  border-left: 2px solid gray;
+}
+
+.timerflame {
+  width: 72px;
+  height: 48px;
+  background-color: #c6c6c6;
+  border-top: 2px solid gray;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  border-left: 2px solid gray;
 }
 
 /* #c6c6c6;うすい灰色 */
