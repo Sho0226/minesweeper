@@ -178,6 +178,7 @@ const Home = () => {
                 <div
                   className={styles.reset}
                   style={{ backgroundPosition: `${-30 * samplePos}px 0px` }}
+                  onClick={() => setSamplePos((P) => (P + 1) % 14)}
                 />
               </div>
             </div>
