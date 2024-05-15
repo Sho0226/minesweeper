@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './index.module.css';
 
 const Home = () => {
-  const [samplePos, setSamplePos] = useState(0);
+  const [samplePos, setSamplePos] = useState(11);
 
   // 0 -> ボム無し
   // 1 -> ボム有り
@@ -167,6 +167,7 @@ const Home = () => {
   //  10  -> 石+旗
   //  11  -> ボムセル
   updateboard();
+
   return (
     <div className={styles.container}>
       <div className={styles.boardoutsideflame}>
@@ -178,7 +179,7 @@ const Home = () => {
                 <div
                   className={styles.reset}
                   style={{ backgroundPosition: `${-30 * samplePos}px 0px` }}
-                  onClick={() => setSamplePos((P) => (P + 1) % 14)}
+                  onClick={() => setSamplePos((P) => 11 + ((P % 9) % 3))}
                 />
               </div>
             </div>
@@ -203,12 +204,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      <div
-        className={styles.samplestyle}
-        style={{ backgroundPosition: `${-30 * samplePos}px 0px` }}
-        onClick={() => setSamplePos((P) => (P + 1) % 14)}
-      />
     </div>
   );
 };
