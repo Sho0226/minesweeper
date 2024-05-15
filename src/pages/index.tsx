@@ -206,8 +206,8 @@ const Home = () => {
       <div
         className={styles.samplestyle}
         style={{ backgroundPosition: `${-30 * samplePos}px 0px` }}
+        onClick={() => setSamplePos((P) => (P + 1) % 14)}
       />
-      <button onClick={() => setSamplePos((P) => (P + 1) % 14)}>sample</button>
     </div>
   );
 };
