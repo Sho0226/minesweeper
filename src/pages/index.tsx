@@ -175,7 +175,10 @@ const Home = () => {
             <div className={styles.flagflame} />
             <div className={styles.resetoutflame}>
               <div className={styles.resetflame}>
-                <div className={styles.reset} />
+                <div
+                  className={styles.reset}
+                  style={{ backgroundPosition: `${-30 * samplePos}px 0px` }}
+                />
               </div>
             </div>
             <div className={styles.timerflame} />
