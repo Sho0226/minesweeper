@@ -81,7 +81,9 @@ const Home = () => {
   const updateboard = () => {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
-        if (userIn[i][j] === 1) {
+        if (bombMap[i][j] === 1 && userIn[i][j] === 1) {
+          board[i][j] = 11;
+        } else if (userIn[i][j] === 1) {
           arounder(i, j);
         } else if (userIn[i][j] === 2) {
           board[i][j] = 9;
@@ -94,11 +96,7 @@ const Home = () => {
 
   const clickHandler = (x: number, y: number) => {
     if (gameOver) return;
-    if (bombMap[y][x] === 1) {
-      setGameOver(true); // ゲームオーバー状態に設定
-      return; // 以降の処理をスキップ
-    }
-    const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
+    //const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
     const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
     let bombcountnow = 0;
     const bombcount = 10;
@@ -123,9 +121,12 @@ const Home = () => {
       setUserIn(newUserIn);
     }
 
-    // console.table(userIn);
-    // console.table(board);
+    if (bombMap[y][x] === 1 && board[y][x] === -1) {
+      setGameOver(true);
+    }
   };
+  // console.table(userIn);
+  // console.table(board);
 
   const arounder = (i: number, j: number) => {
     console.log(1);
@@ -183,6 +184,7 @@ const Home = () => {
       }
     }
   };
+
   // const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
   // const isFailure = userIn.some((row, y) =>
   //   row.some((input, x) => input === 1 && bombMap[y][x] === 1),
@@ -207,7 +209,10 @@ const Home = () => {
                 <div
                   className={styles.reset}
                   style={{ backgroundPosition: `${-30 * samplePos}px 0px` }}
-                  onClick={() => `${setSamplePos((P) => 11 + ((P % 9) % 3))} ${resetgame()} `}
+                  onClick={() => {
+                    setSamplePos((P) => 11 + ((P % 9) % 3));
+                    resetgame();
+                  }}
                 />
               </div>
             </div>
@@ -218,10 +223,12 @@ const Home = () => {
               {board.map((row, y) =>
                 row.map((cell, x) => (
                   <div
-                    className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : ''} ${cell === 11 ? styles.gameover : ''}
+                    className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : ''} }
                     `}
                     key={`${x}-${y}`}
-                    onClick={() => clickHandler(x, y)}
+                    onClick={() => {
+                      clickHandler(x, y);
+                    }}
                     style={{
                       backgroundPosition: `${-30 * (cell - 1)}px 0px`,
                     }}
