@@ -91,7 +91,7 @@ const Home = () => {
       }
     }
   };
-  // const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
+  const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
   const isFailure = userIn.some((row, y) =>
     row.some((input, x) => input === 1 && bombMap[y][x] === 1),
   );
@@ -250,7 +250,7 @@ const Home = () => {
                   onClick={() => {
                     resetgame();
                   }}
-                  style={{ backgroundPosition: `-330px 0px` }}
+                  style={{ backgroundPosition: isFailure ? `-390px 0px` : `-330px 0px` }}
                 />
               </div>
             </div>
