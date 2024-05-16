@@ -4,7 +4,6 @@ import styles from './index.module.css';
 const Home = () => {
   const [samplePos, setSamplePos] = useState(11);
   const [gameOver, setGameOver] = useState(false);
-  const [openedFlg, setOpenedFlg] = useState(false);
   const board: number[][] = [
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
@@ -201,7 +200,7 @@ const Home = () => {
     event.preventDefault(); // デフォルトの右クリックメニューを無効化
     console.log(1);
 
-    if (openedFlg) {
+    if (gameOver) {
       // 既に開かれている場合は何もしない
       return;
     }
