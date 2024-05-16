@@ -173,11 +173,18 @@ const Home = () => {
         // ボードの範囲内であることを確認
         if (j + J >= 0 && j + J < board.length && i + I >= 0 && i + I < board[0].length) {
           // 未探索のセルに対して再帰的に arounder を呼び出す
+          if (bombMap[i + I][j + J] === 1 && (userIn[i][j] === 2 || userIn[i][j] === 3)) {
+            userIn[i][j] = 0;
+          }
           if (
             userIn[i + I][j + J] === 0 ||
             userIn[i + I][j + J] === 2 ||
             userIn[i + I][j + J] === 3
           ) {
+            // 旗または？の場合はリセットする
+            if (userIn[i + I][j + J] === 2 || userIn[i + I][j + J] === 3) {
+              userIn[i + I][j + J] = 0;
+            }
             if (board[i + I][j + J] === -1) {
               // console.log(2);
               board[i + I][j + J] = aroundcount + 1;
