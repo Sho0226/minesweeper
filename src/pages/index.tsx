@@ -222,19 +222,37 @@ const Home = () => {
           <div className={styles.boardflame}>
             <div className={styles.boardstyle}>
               {board.map((row, y) =>
-                row.map((cell, x) => (
-                  <div
-                    className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : ''} }
-                    `}
-                    key={`${x}-${y}`}
-                    onClick={() => {
-                      clickHandler(x, y);
-                    }}
-                    style={{
-                      backgroundPosition: `${-30 * (cell - 1)}px 0px`,
-                    }}
-                  />
-                )),
+                row.map((cell, x) => {
+                  // ゲームが終了しており、かつセルが爆弾である場合は爆弾を表示する
+                  if (gameOver && bombMap[y][x] === 1) {
+                    return (
+                      <div
+                        className={`${styles.cellstyle} ${styles.samplestyle}  `}
+                        key={`${x}-${y}`}
+                        onClick={() => {
+                          clickHandler(x, y);
+                        }}
+                        style={{
+                          backgroundPosition: `-300px 0px`,
+                          backgroundColor: bombMap[y][x] === 1 && userIn[y][x] === 1 ? `red` : '',
+                        }}
+                      />
+                    );
+                  } else {
+                    return (
+                      <div
+                        className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : ''}`}
+                        key={`${x}-${y}`}
+                        onClick={() => {
+                          clickHandler(x, y);
+                        }}
+                        style={{
+                          backgroundPosition: `${-30 * (cell - 1)}px 0px`,
+                        }}
+                      />
+                    );
+                  }
+                }),
               )}
             </div>
           </div>
