@@ -3,7 +3,6 @@ import styles from './index.module.css';
 
 const Home = () => {
   const [samplePos, setSamplePos] = useState(11);
-  const [gameOver, setGameOver] = useState(false);
   const board: number[][] = [
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
@@ -93,9 +92,13 @@ const Home = () => {
       }
     }
   };
-
+  // const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
+  const isFailure = userIn.some((row, y) =>
+    row.some((input, x) => input === 1 && bombMap[y][x] === 1),
+  );
   const clickHandler = (x: number, y: number) => {
-    if (gameOver) return;
+    if (isFailure) return;
+
     //const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
     const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
     let bombcountnow = 0;
@@ -122,7 +125,7 @@ const Home = () => {
     }
 
     if (board[y][x] === -1 && bombMap[y][x] === 1) {
-      setGameOver(true);
+      isFailure;
     }
   };
   // console.table(userIn);
@@ -196,11 +199,6 @@ const Home = () => {
     }
   };
 
-  // const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
-  // const isFailure = userIn.some((row, y) =>
-  //   row.some((input, x) => input === 1 && bombMap[y][x] === 1),
-  // );
-
   // -1   -> 石
   //  0   -> 画像無しセル
   //  1~8 -> 数字セル
@@ -211,7 +209,7 @@ const Home = () => {
     event.preventDefault(); // デフォルトの右クリックメニューを無効化
     console.log(1);
 
-    if (gameOver) {
+    if (isFailure) {
       // 既に開かれている場合は何もしない
       return;
     }
@@ -253,7 +251,6 @@ const Home = () => {
                   onClick={() => {
                     setSamplePos(11);
                     resetgame();
-                    setGameOver(false);
                   }}
                   style={{ backgroundPosition: `${-30 * samplePos}px 0px` }}
                 />
@@ -266,7 +263,7 @@ const Home = () => {
               {board.map((row, y) =>
                 row.map((cell, x) => {
                   // ゲームが終了しており、かつセルが爆弾である場合は爆弾を表示する
-                  if (gameOver && bombMap[y][x] === 1) {
+                  if (isFailure && bombMap[y][x] === 1) {
                     return (
                       <div
                         className={`${styles.cellstyle} ${styles.samplestyle}  `}
