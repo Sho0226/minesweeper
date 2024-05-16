@@ -4,6 +4,7 @@ import styles from './index.module.css';
 const Home = () => {
   const [samplePos, setSamplePos] = useState(11);
   const [gameOver, setGameOver] = useState(false);
+  const [openedFlg, setOpenedFlg] = useState(false);
   const board: number[][] = [
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
@@ -198,7 +199,34 @@ const Home = () => {
   //  11  -> ボムセル
   const RightClick = (event: React.MouseEvent, x: number, y: number) => {
     event.preventDefault(); // デフォルトの右クリックメニューを無効化
+    console.log(1);
+
+    if (openedFlg) {
+      // 既に開かれている場合は何もしない
+      return;
+    }
+    console.log(2);
+
+    if (board[y][x] === -1 && userIn[y][x] === 0) {
+      newUserIn[y][x] = 3;
+      // 旗を表示
+      console.log(3);
+      setUserIn(newUserIn);
+    }
+    if (userIn[y][x] === 3) {
+      newUserIn[y][x] = 2;
+      // ？を表示
+      setUserIn(newUserIn);
+    }
+    if (userIn[y][x] === 2) {
+      // 元に戻す
+      newUserIn[y][x] = 0;
+      setUserIn(newUserIn);
+    }
   };
+
+  console.table(newUserIn);
+  console.table(board);
 
   updateboard();
 
