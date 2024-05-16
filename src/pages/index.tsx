@@ -121,7 +121,7 @@ const Home = () => {
       setUserIn(newUserIn);
     }
 
-    if (bombMap[y][x] === 1 && board[y][x] === -1) {
+    if (board[y][x] === -1 && bombMap[y][x] === 1) {
       setGameOver(true);
     }
   };
@@ -212,6 +212,7 @@ const Home = () => {
                   onClick={() => {
                     setSamplePos((P) => 11 + ((P % 9) % 3));
                     resetgame();
+                    setGameOver(false);
                   }}
                 />
               </div>
