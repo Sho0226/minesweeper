@@ -31,7 +31,6 @@ background-color: blue; */
 .boardflame {
   width: 282px;
   height: 282px;
-  background-color: #c6c6c6;
   border-top: 6px solid gray;
   border-right: 6px solid white;
   border-bottom: 6px solid white;

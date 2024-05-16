@@ -196,6 +196,10 @@ const Home = () => {
   //  9   -> 石+はてな
   //  10  -> 石+旗
   //  11  -> ボムセル
+  const RightClick = (event: React.MouseEvent, x: number, y: number) => {
+    event.preventDefault(); // デフォルトの右クリックメニューを無効化
+  };
+
   updateboard();
 
   return (
@@ -208,12 +212,12 @@ const Home = () => {
               <div className={styles.resetflame}>
                 <div
                   className={styles.reset}
-                  style={{ backgroundPosition: `${-30 * samplePos}px 0px` }}
                   onClick={() => {
-                    setSamplePos((P) => 11 + ((P % 9) % 3));
+                    setSamplePos(11);
                     resetgame();
                     setGameOver(false);
                   }}
+                  style={{ backgroundPosition: `${-30 * samplePos}px 0px` }}
                 />
               </div>
             </div>
@@ -232,6 +236,9 @@ const Home = () => {
                         onClick={() => {
                           clickHandler(x, y);
                         }}
+                        onContextMenu={(event) => {
+                          RightClick(event, x, y);
+                        }}
                         style={{
                           backgroundPosition: `-300px 0px`,
                           backgroundColor: bombMap[y][x] === 1 && userIn[y][x] === 1 ? `red` : '',
@@ -245,6 +252,9 @@ const Home = () => {
                         key={`${x}-${y}`}
                         onClick={() => {
                           clickHandler(x, y);
+                        }}
+                        onContextMenu={(event) => {
+                          RightClick(event, x, y);
                         }}
                         style={{
                           backgroundPosition: `${-30 * (cell - 1)}px 0px`,
