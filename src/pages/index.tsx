@@ -196,7 +196,7 @@ const Home = () => {
               {board.map((row, y) =>
                 row.map((cell, x) => (
                   <div
-                    className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : ''}
+                    className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : ''} ${cell === 11 ? styles.gameover : ''}
                     `}
                     key={`${x}-${y}`}
                     onClick={() => clickHandler(x, y)}

@@ -82,6 +82,10 @@ background-color: blue; */
   border-color: gray;
 }
 
+.gameover {
+  background-color: red;
+}
+
 .stonestyle {
   width: 30px;
   height: 30px;
