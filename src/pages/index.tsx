@@ -173,7 +173,11 @@ const Home = () => {
         // ボードの範囲内であることを確認
         if (j + J >= 0 && j + J < board.length && i + I >= 0 && i + I < board[0].length) {
           // 未探索のセルに対して再帰的に arounder を呼び出す
-          if (userIn[i + I][j + J] === 0) {
+          if (
+            userIn[i + I][j + J] === 0 ||
+            userIn[i + I][j + J] === 2 ||
+            userIn[i + I][j + J] === 3
+          ) {
             if (board[i + I][j + J] === -1) {
               // console.log(2);
               board[i + I][j + J] = aroundcount + 1;
