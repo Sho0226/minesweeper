@@ -4,6 +4,17 @@ import styles from './index.module.css';
 const Home = () => {
   const [samplePos, setSamplePos] = useState(11);
   const [gameOver, setGameOver] = useState(false);
+  const board: number[][] = [
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+  ];
 
   // 0 -> ボム無し
   // 1 -> ボム有り
@@ -37,28 +48,39 @@ const Home = () => {
   // 2 ->はてな
   // 3 ->旗
 
+  const resetgame = () => {
+    console.log(111111);
+    setBombMap([
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]);
+
+    setUserIn([
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]);
+  };
+
   const newBombMap = structuredClone(bombMap);
   const newUserIn = structuredClone(userIn);
-
-  const board: number[][] = [
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-  ];
 
   const updateboard = () => {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
-        if (newBombMap[i][j] === 1) {
-          board[i][j] = 11;
-        }
-
         if (userIn[i][j] === 1) {
           arounder(i, j);
         } else if (userIn[i][j] === 2) {
@@ -77,11 +99,11 @@ const Home = () => {
       return; // 以降の処理をスキップ
     }
     const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
-    // const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
+    const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
     let bombcountnow = 0;
     const bombcount = 10;
 
-    if (NumBoard(11) === 0) {
+    if (Num(1) === 0) {
       while (bombcountnow < bombcount) {
         const randomY = Math.floor(Math.random() * newBombMap.length);
         const randomX = Math.floor(Math.random() * newBombMap[0].length);
@@ -185,7 +207,7 @@ const Home = () => {
                 <div
                   className={styles.reset}
                   style={{ backgroundPosition: `${-30 * samplePos}px 0px` }}
-                  onClick={() => setSamplePos((P) => 11 + ((P % 9) % 3))}
+                  onClick={() => `${setSamplePos((P) => 11 + ((P % 9) % 3))} ${resetgame()} `}
                 />
               </div>
             </div>
