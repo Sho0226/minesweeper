@@ -49,7 +49,7 @@ const Home = () => {
   // 3 ->旗
 
   const resetgame = () => {
-    console.log(111111);
+    // console.log(111111);
     setBombMap([
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -129,7 +129,7 @@ const Home = () => {
   // console.table(board);
 
   const arounder = (i: number, j: number) => {
-    console.log(1);
+    // console.log(1);
     const directions = [
       [-1, 0],
       [-1, -1],
@@ -159,7 +159,7 @@ const Home = () => {
         }
       }
     }
-    console.log(4);
+    // console.log(4);
     // 周囲のボムの数を設定
     board[i][j] = aroundcount;
     console.log(aroundcount, '回');
@@ -175,7 +175,7 @@ const Home = () => {
           // 未探索のセルに対して再帰的に arounder を呼び出す
           if (userIn[i + I][j + J] === 0) {
             if (board[i + I][j + J] === -1) {
-              console.log(2);
+              // console.log(2);
               board[i + I][j + J] = aroundcount + 1;
               arounder(i + I, j + J);
             }
