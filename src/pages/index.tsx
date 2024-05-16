@@ -3,6 +3,7 @@ import styles from './index.module.css';
 
 const Home = () => {
   const [samplePos, setSamplePos] = useState(11);
+  const [gameOver, setGameOver] = useState(false);
 
   // 0 -> ボム無し
   // 1 -> ボム有り
@@ -70,6 +71,11 @@ const Home = () => {
   };
 
   const clickHandler = (x: number, y: number) => {
+    if (gameOver) return;
+    if (bombMap[y][x] === 1) {
+      setGameOver(true); // ゲームオーバー状態に設定
+      return; // 以降の処理をスキップ
+    }
     const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
     // const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
     let bombcountnow = 0;
