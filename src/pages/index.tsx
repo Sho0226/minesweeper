@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styles from './index.module.css';
 
 const Home = () => {
-  const [samplePos, setSamplePos] = useState(11);
   const board: number[][] = [
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
@@ -249,10 +248,9 @@ const Home = () => {
                 <div
                   className={styles.reset}
                   onClick={() => {
-                    setSamplePos(11);
                     resetgame();
                   }}
-                  style={{ backgroundPosition: `${-30 * samplePos}px 0px` }}
+                  style={{ backgroundPosition: `-330px 0px` }}
                 />
               </div>
             </div>
