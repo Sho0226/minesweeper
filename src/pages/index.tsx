@@ -47,7 +47,6 @@ const Home = () => {
   // 3 ->旗
 
   const resetgame = () => {
-    // console.log(111111);
     setBombMap([
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -249,10 +248,10 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.gameoverboard} />
       <div className={styles.boardoutsideflame}>
         <div className={styles.boardcontainer}>
           <div className={styles.topflame}>
-            <div className={styles.flagflame} />
             <div className={styles.resetoutflame}>
               <div className={styles.resetflame}>
                 <div
@@ -282,7 +281,7 @@ const Home = () => {
                   if (isFailure && bombMap[y][x] === 1) {
                     return (
                       <div
-                        className={`${styles.cellstyle} ${styles.samplestyle}  `}
+                        className={`${styles.cellstyle} ${styles.samplestyle} `}
                         key={`${x}-${y}`}
                         onClick={() => {
                           clickHandler(x, y);

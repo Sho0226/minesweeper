@@ -132,7 +132,7 @@ background-color: blue; */
   transform: scale(0.8);
 }
 
-.flagflame {
+.timerflame {
   width: 72px;
   height: 48px;
   background-color: #c6c6c6;
@@ -142,14 +142,10 @@ background-color: blue; */
   border-left: 2px solid gray;
 }
 
-.timerflame {
+.gameoverboard {
   width: 72px;
   height: 48px;
-  background-color: #c6c6c6;
-  border-top: 2px solid gray;
-  border-right: 2px solid white;
-  border-bottom: 2px solid white;
-  border-left: 2px solid gray;
+  background-color: blue;
 }
 
 /* #c6c6c6;うすい灰色 */
