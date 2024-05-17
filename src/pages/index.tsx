@@ -86,6 +86,8 @@ const Home = () => {
           board[i][j] = 9;
         } else if (userIn[i][j] === 3) {
           board[i][j] = 10;
+        } else if (isClear && bombMap[i][j] === 1) {
+          board[i][j] = 10;
         }
       }
     }
