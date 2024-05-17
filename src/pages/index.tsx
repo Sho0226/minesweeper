@@ -130,17 +130,16 @@ const Home = () => {
     if (isClear || isFailure) {
       return;
     }
-    // ゲームがクリアまたは爆発した場合はインターバル処理を停止する
+    if (isPlaying) {
+      // インターバル処理を実行する
+      const interval = setInterval(() => {
+        setCount((count) => count + 1);
+      }, 1000);
 
-    // それ以外の場合はインターバル処理を実行する
-
-    const interval = setInterval(() => {
-      setCount((count) => count + 1);
-    }, 1000);
-
-    // コンポーネントがアンマウントされた時にインターバル処理をクリーンアップする
-    return () => clearInterval(interval);
-  }, [isClear, isFailure]);
+      // コンポーネントがアンマウントされた時にインターバル処理をクリーンアップする
+      return () => clearInterval(interval);
+    }
+  }, [isClear, isFailure, isPlaying]);
 
   const clickHandler = (x: number, y: number) => {
     if (isFailure || isClear) return;

@@ -165,14 +165,13 @@ background-color: blue; */
 
 .sevensegment {
   display: flex;
-  gap: 5px;
 }
 
 .digit {
   display: inline-block;
   width: 20px;
   height: 10px;
-  font-size: 20px;
+  font-size: 30px;
   line-height: 10px;
   color: red;
   text-align: center;
