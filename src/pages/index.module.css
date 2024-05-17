@@ -84,6 +84,7 @@ background-color: blue; */
 .stonestyle {
   width: 30px;
   height: 30px;
+  background-color: #c6c6c6;
   border-top: 4px solid white;
   border-right: 4px solid gray;
   border-bottom: 4px solid gray;
@@ -182,6 +183,13 @@ background-color: blue; */
   border-bottom: 1px solid #aaa;
   border-left: 1px solid white;
   box-shadow: 3px 3px 5px rgb(0 0 0 / 10%);
+}
+
+.flag,
+.question {
+  width: 30px;
+  height: 30px;
+  background: url('~/src/assets/images/icons.webp') no-repeat;
 }
 
 /* #c6c6c6;うすい灰色 */

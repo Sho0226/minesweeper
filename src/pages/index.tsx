@@ -302,7 +302,7 @@ const Home = () => {
                     } else {
                       return (
                         <div
-                          className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : ''}`}
+                          className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : cell === 9 || cell === 10 ? `${styles.stonestyle} ${styles.flag} ${styles.question}` : ''}`}
                           key={`${x}-${y}`}
                           onClick={() => {
                             clickHandler(x, y);
