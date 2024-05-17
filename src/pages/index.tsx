@@ -306,7 +306,9 @@ const Home = () => {
                 resetgame();
               }}
             >
-              <div className={styles.flagflame} />
+              <div className={styles.flagflame}>
+                <div className={styles.flagboard} />
+              </div>
               <div className={styles.resetoutflame}>
                 <div className={styles.resetflame}>
                   <div
@@ -325,7 +327,7 @@ const Home = () => {
               </div>
               <div className={styles.timerflame}>
                 {/* <img src={`~/src/assets/images/${1}.png`} alt={String(1)} /> */}
-                <div className={styles.app}>
+                <div className={styles.timerboard}>
                   <SevenSegmentDisplay count={count} />
                 </div>
               </div>
