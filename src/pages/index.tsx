@@ -105,11 +105,11 @@ const Home = () => {
     }),
   );
   const clickHandler = (x: number, y: number) => {
-    if (isFailure) return;
+    if (isFailure || isClear) return;
 
     const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
     let bombcountnow = 0;
-    const bombcount = 10;
+    const bombcount = 1;
 
     if (Num(1) === 0) {
       while (bombcountnow < bombcount) {
@@ -172,8 +172,8 @@ const Home = () => {
     // console.log(4);
     // 周囲のボムの数を設定
     board[i][j] = aroundcount;
-    console.log(aroundcount, '回');
-    console.table(userIn);
+    // console.log(aroundcount, '回');
+    // console.table(userIn);
 
     if (aroundcount === 0) {
       console.log(3);
@@ -218,9 +218,8 @@ const Home = () => {
     event.preventDefault(); // デフォルトの右クリックメニューを無効化
     console.log(1);
 
-    if (isFailure) {
-      return;
-    }
+    if (isFailure || isClear) return;
+
     console.log(2);
 
     if (board[y][x] === -1 && userIn[y][x] === 0) {
@@ -241,9 +240,9 @@ const Home = () => {
     }
   };
 
-  console.table(newUserIn);
-  console.table(board);
-
+  // console.table(newUserIn);
+  // console.table(board);
+  console.table(newBombMap);
   updateboard();
 
   return (
