@@ -252,6 +252,7 @@ const Home = () => {
       <div className={styles.boardoutsideflame}>
         <div className={styles.boardcontainer}>
           <div className={styles.topflame}>
+            <div className={styles.flagflame} />
             <div className={styles.resetoutflame}>
               <div className={styles.resetflame}>
                 <div
