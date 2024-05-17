@@ -153,6 +153,33 @@ background-color: blue; */
   border-left: 2px solid gray;
 }
 
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  color: white;
+  background-color: #000;
+}
+
+.sevensegment {
+  display: flex;
+  gap: 5px;
+}
+
+.digit {
+  display: inline-block;
+  width: 20px;
+  height: 10px;
+  font-size: 20px;
+  line-height: 10px;
+  color: red;
+  text-align: center;
+  background: black;
+  border-radius: 5px;
+}
+
 .minesweepercontainer {
   display: flex;
   flex-direction: row-reverse;

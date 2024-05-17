@@ -1,7 +1,26 @@
 import { useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './index.module.css';
+// import img1 from '/src/assets/images/1.png';
+// import Image from 'next/image';
 
 const Home = () => {
+  const [count, setCount] = useState<number>(0);
+  const SevenSegmentDisplay: React.FC<{ count: number }> = ({ count }) => {
+    // count を3桁にするために左を0で埋める
+    const formattedCount = String(count).padStart(3, '0');
+
+    return (
+      <div className={styles.sevensegment}>
+        {formattedCount.split('').map((digit, index) => (
+          <span key={index} className={styles.digit}>
+            {digit}
+          </span>
+        ))}
+      </div>
+    );
+  };
+
   const board: number[][] = [
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
@@ -47,6 +66,7 @@ const Home = () => {
   // 3 ->旗
 
   const resetgame = () => {
+    setCount(0);
     setBombMap([
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -106,6 +126,22 @@ const Home = () => {
       return true;
     }),
   );
+  useEffect(() => {
+    if (isClear || isFailure) {
+      return;
+    }
+    // ゲームがクリアまたは爆発した場合はインターバル処理を停止する
+
+    // それ以外の場合はインターバル処理を実行する
+
+    const interval = setInterval(() => {
+      setCount((count) => count + 1);
+    }, 1000);
+
+    // コンポーネントがアンマウントされた時にインターバル処理をクリーンアップする
+    return () => clearInterval(interval);
+  }, [isClear, isFailure]);
+
   const clickHandler = (x: number, y: number) => {
     if (isFailure || isClear) return;
 
@@ -288,7 +324,12 @@ const Home = () => {
                   />
                 </div>
               </div>
-              <div className={styles.timerflame} />
+              <div className={styles.timerflame}>
+                {/* <img src={`~/src/assets/images/${1}.png`} alt={String(1)} /> */}
+                <div className={styles.app}>
+                  <SevenSegmentDisplay count={count} />
+                </div>
+              </div>
             </div>
             <div className={styles.boardflame}>
               <div className={styles.boardstyle}>
