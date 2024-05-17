@@ -250,8 +250,18 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <div className={styles.minesweepercontainer}>
-        <div className={styles.gameoverboardflame}>
-          <div className={styles.gameoverboard} />
+        <div
+          className={styles.gameoverboardflame}
+          style={{ display: isClear || isFailure ? '' : 'none' }}
+        >
+          <div className={styles.gameoverboard}>
+            <span className={styles.text} style={{ display: isClear ? '' : 'none' }}>
+              回避成功
+            </span>
+            <span className={styles.text} style={{ display: isClear ? 'none' : '' }}>
+              回避失敗
+            </span>
+          </div>
         </div>
         <div className={styles.boardoutsideflame}>
           <div className={styles.boardcontainer}>
@@ -316,7 +326,7 @@ const Home = () => {
                           style={{
                             backgroundPosition:
                               cell === 9 || cell === 10
-                                ? `${-23 * (cell - 1)}px 0px`
+                                ? `${-22.9 * (cell - 1)}px 0px`
                                 : `${-30 * (cell - 1)}px 0px`,
                           }}
                         />

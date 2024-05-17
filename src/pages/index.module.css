@@ -159,10 +159,11 @@ background-color: blue; */
 }
 
 .gameoverboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 170px;
   height: 270px;
-  margin-top: 1px;
-  margin-left: 1px;
   background-color: #f8f8f8;
   border-top: 1px solid white;
   border-right: 1px solid #ccc;
@@ -192,6 +193,12 @@ background-color: blue; */
   background-image: url('~/src/assets/images/icons.webp');
   background-repeat: no-repeat;
   background-size: 322px;
+}
+
+.text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 /* #c6c6c6;うすい灰色 */
