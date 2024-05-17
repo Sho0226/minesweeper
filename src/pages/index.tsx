@@ -248,73 +248,77 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.gameoverboard} />
-      <div className={styles.boardoutsideflame}>
-        <div className={styles.boardcontainer}>
-          <div className={styles.topflame}>
-            <div className={styles.flagflame} />
-            <div className={styles.resetoutflame}>
-              <div className={styles.resetflame}>
-                <div
-                  className={styles.reset}
-                  onClick={() => {
-                    resetgame();
-                  }}
-                  style={{
-                    backgroundPosition: isClear
-                      ? `-360px 0px` // クリア時の背景位置
-                      : isFailure
-                        ? `-390px 0px`
-                        : isPlaying
-                          ? `-330px 0px`
-                          : `-330px 0px`,
-                  }}
-                />
+      <div className={styles.minesweepercontainer}>
+        <div className={styles.gameoverboardflame}>
+          <div className={styles.gameoverboard} />
+        </div>
+        <div className={styles.boardoutsideflame}>
+          <div className={styles.boardcontainer}>
+            <div className={styles.topflame}>
+              <div className={styles.flagflame} />
+              <div className={styles.resetoutflame}>
+                <div className={styles.resetflame}>
+                  <div
+                    className={styles.reset}
+                    onClick={() => {
+                      resetgame();
+                    }}
+                    style={{
+                      backgroundPosition: isClear
+                        ? `-360px 0px` // クリア時の背景位置
+                        : isFailure
+                          ? `-390px 0px`
+                          : isPlaying
+                            ? `-330px 0px`
+                            : `-330px 0px`,
+                    }}
+                  />
+                </div>
               </div>
+              <div className={styles.timerflame} />
             </div>
-            <div className={styles.timerflame} />
-          </div>
-          <div className={styles.boardflame}>
-            <div className={styles.boardstyle}>
-              {board.map((row, y) =>
-                row.map((cell, x) => {
-                  // ゲームが終了しており、かつセルが爆弾である場合は爆弾を表示する
-                  if (isFailure && bombMap[y][x] === 1) {
-                    return (
-                      <div
-                        className={`${styles.cellstyle} ${styles.samplestyle} `}
-                        key={`${x}-${y}`}
-                        onClick={() => {
-                          clickHandler(x, y);
-                        }}
-                        onContextMenu={(event) => {
-                          RightClick(event, x, y);
-                        }}
-                        style={{
-                          backgroundPosition: `-300px 0px`,
-                          backgroundColor: bombMap[y][x] === 1 && userIn[y][x] === 1 ? `red` : '',
-                        }}
-                      />
-                    );
-                  } else {
-                    return (
-                      <div
-                        className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : ''}`}
-                        key={`${x}-${y}`}
-                        onClick={() => {
-                          clickHandler(x, y);
-                        }}
-                        onContextMenu={(event) => {
-                          RightClick(event, x, y);
-                        }}
-                        style={{
-                          backgroundPosition: `${-30 * (cell - 1)}px 0px`,
-                        }}
-                      />
-                    );
-                  }
-                }),
-              )}
+            <div className={styles.boardflame}>
+              <div className={styles.boardstyle}>
+                {board.map((row, y) =>
+                  row.map((cell, x) => {
+                    // ゲームが終了しており、かつセルが爆弾である場合は爆弾を表示する
+                    if (isFailure && bombMap[y][x] === 1) {
+                      return (
+                        <div
+                          className={`${styles.cellstyle} ${styles.samplestyle} `}
+                          key={`${x}-${y}`}
+                          onClick={() => {
+                            clickHandler(x, y);
+                          }}
+                          onContextMenu={(event) => {
+                            RightClick(event, x, y);
+                          }}
+                          style={{
+                            backgroundPosition: `-300px 0px`,
+                            backgroundColor: bombMap[y][x] === 1 && userIn[y][x] === 1 ? `red` : '',
+                          }}
+                        />
+                      );
+                    } else {
+                      return (
+                        <div
+                          className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : ''}`}
+                          key={`${x}-${y}`}
+                          onClick={() => {
+                            clickHandler(x, y);
+                          }}
+                          onContextMenu={(event) => {
+                            RightClick(event, x, y);
+                          }}
+                          style={{
+                            backgroundPosition: `${-30 * (cell - 1)}px 0px`,
+                          }}
+                        />
+                      );
+                    }
+                  }),
+                )}
+              </div>
             </div>
           </div>
         </div>
