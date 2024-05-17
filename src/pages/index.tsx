@@ -254,15 +254,17 @@ const Home = () => {
         </div>
         <div className={styles.boardoutsideflame}>
           <div className={styles.boardcontainer}>
-            <div className={styles.topflame}>
+            <div
+              className={styles.topflame}
+              onClick={() => {
+                resetgame();
+              }}
+            >
               <div className={styles.flagflame} />
               <div className={styles.resetoutflame}>
                 <div className={styles.resetflame}>
                   <div
                     className={styles.reset}
-                    onClick={() => {
-                      resetgame();
-                    }}
                     style={{
                       backgroundPosition: isClear
                         ? `-360px 0px` // クリア時の背景位置
