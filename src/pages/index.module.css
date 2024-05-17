@@ -189,7 +189,9 @@ background-color: blue; */
 .question {
   width: 30px;
   height: 30px;
-  background: url('~/src/assets/images/icons.webp') no-repeat;
+  background-image: url('~/src/assets/images/icons.webp');
+  background-repeat: no-repeat;
+  background-size: 323px;
 }
 
 /* #c6c6c6;うすい灰色 */

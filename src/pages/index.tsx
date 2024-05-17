@@ -311,7 +311,10 @@ const Home = () => {
                             RightClick(event, x, y);
                           }}
                           style={{
-                            backgroundPosition: `${-30 * (cell - 1)}px 0px`,
+                            backgroundPosition:
+                              cell === 9 || cell === 10
+                                ? `${-23 * (cell - 1)}px 0px`
+                                : `${-30 * (cell - 1)}px 0px`,
                           }}
                         />
                       );
