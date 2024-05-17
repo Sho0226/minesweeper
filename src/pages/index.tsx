@@ -91,14 +91,23 @@ const Home = () => {
       }
     }
   };
+  // const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
   const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
   const isFailure = userIn.some((row, y) =>
     row.some((input, x) => input === 1 && bombMap[y][x] === 1),
   );
+  const isClear = board.every((row, y) =>
+    row.every((cell, x) => {
+      // 爆弾のないセルが開かれているかどうかをチェック
+      if (bombMap[y][x] !== 1) {
+        return userIn[y][x] === 1;
+      }
+      return true;
+    }),
+  );
   const clickHandler = (x: number, y: number) => {
     if (isFailure) return;
 
-    //const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
     const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
     let bombcountnow = 0;
     const bombcount = 10;
@@ -209,7 +218,6 @@ const Home = () => {
     console.log(1);
 
     if (isFailure) {
-      // 既に開かれている場合は何もしない
       return;
     }
     console.log(2);
@@ -250,7 +258,15 @@ const Home = () => {
                   onClick={() => {
                     resetgame();
                   }}
-                  style={{ backgroundPosition: isFailure ? `-390px 0px` : `-330px 0px` }}
+                  style={{
+                    backgroundPosition: isClear
+                      ? `-360px 0px` // クリア時の背景位置
+                      : isFailure
+                        ? `-390px 0px`
+                        : isPlaying
+                          ? `-330px 0px`
+                          : `-330px 0px`,
+                  }}
                 />
               </div>
             </div>
