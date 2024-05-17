@@ -199,6 +199,8 @@ const Home = () => {
             if (board[i + I][j + J] === -1) {
               // console.log(2);
               board[i + I][j + J] = aroundcount + 1;
+              userIn[i + I][j + J] = 1;
+
               arounder(i + I, j + J);
             }
           }
