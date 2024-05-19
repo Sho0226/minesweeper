@@ -290,7 +290,9 @@ const Home = () => {
               }}
             >
               <div className={styles.flagflame}>
-                <div className={styles.flagboard} />
+                <div className={styles.flagboard}>
+                  <div className={styles.flagnumber} />
+                </div>
               </div>
               <div className={styles.resetoutflame}>
                 <div className={styles.resetflame}>

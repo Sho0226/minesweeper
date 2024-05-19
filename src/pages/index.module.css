@@ -1,4 +1,6 @@
 .container {
+  position: fixed;
+  left: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,7 +8,6 @@
   height: 100vh;
   min-height: 100vh;
   padding: 0 0.5rem;
-  background-color: #f9f9f9;
 }
 
 .samplestyle {
@@ -156,6 +157,9 @@ background-color: blue; */
 
 .sevensegment {
   display: flex;
+}
+
+.flagnumber {
 }
 
 .digit {
