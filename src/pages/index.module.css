@@ -151,7 +151,7 @@ background-color: blue; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 46px;
+  height: 45px;
   background-color: #000;
 }
 
@@ -160,12 +160,8 @@ background-color: blue; */
 }
 
 .digit {
-  display: inline-block;
-  width: 20px;
-  height: 10px;
   font-size: 30px;
   font-weight: bold;
-  line-height: 10px;
   color: #f00;
   text-align: center;
   background: black;

@@ -34,9 +34,6 @@ const Home = () => {
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
   ];
 
-  // 0 -> ボム無し
-  // 1 -> ボム有り
-
   const array = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -64,11 +61,6 @@ const Home = () => {
   const [bombMap, setBombMap] = useState(array);
 
   const [userIn, setUserIn] = useState(inputArray);
-
-  // 0 ->未クリック
-  // 1 ->左クリック
-  // 2 ->はてな
-  // 3 ->旗
 
   const resetgame = () => {
     setCount(0);
@@ -103,7 +95,6 @@ const Home = () => {
   );
   const isClear = board.every((row, y) =>
     row.every((cell, x) => {
-      // 爆弾のないセルが開かれているかどうかをチェック
       if (bombMap[y][x] !== 1) {
         return userIn[y][x] === 1;
       }
@@ -115,12 +106,10 @@ const Home = () => {
       return;
     }
     if (isPlaying) {
-      // インターバル処理を実行する
       const interval = setInterval(() => {
         setCount((count) => count + 1);
       }, 1000);
 
-      // コンポーネントがアンマウントされた時にインターバル処理をクリーンアップする
       return () => clearInterval(interval);
     }
   }, [isClear, isFailure, isPlaying]);
@@ -228,14 +217,8 @@ const Home = () => {
     }
   };
 
-  // -1   -> 石
-  //  0   -> 画像無しセル
-  //  1~8 -> 数字セル
-  //  9   -> 石+はてな
-  //  10  -> 石+旗
-  //  11  -> ボムセル
   const RightClick = (event: React.MouseEvent, x: number, y: number) => {
-    event.preventDefault(); // デフォルトの右クリックメニューを無効化
+    event.preventDefault();
     console.log(1);
 
     if (isFailure || isClear) return;
@@ -244,17 +227,14 @@ const Home = () => {
 
     if (board[y][x] === -1 && userIn[y][x] === 0) {
       newUserIn[y][x] = 3;
-      // 旗を表示
       console.log(3);
       setUserIn(newUserIn);
     }
     if (userIn[y][x] === 3) {
       newUserIn[y][x] = 2;
-      // ？を表示
       setUserIn(newUserIn);
     }
     if (userIn[y][x] === 2) {
-      // 元に戻す
       newUserIn[y][x] = 0;
       setUserIn(newUserIn);
     }
@@ -328,7 +308,7 @@ const Home = () => {
                     className={styles.reset}
                     style={{
                       backgroundPosition: isClear
-                        ? `-360px 0px` // クリア時の背景位置
+                        ? `-360px 0px`
                         : isFailure
                           ? `-390px 0px`
                           : isPlaying
@@ -339,7 +319,6 @@ const Home = () => {
                 </div>
               </div>
               <div className={styles.timerflame}>
-                {/* <img src={`~/src/assets/images/${1}.png`} alt={String(1)} /> */}
                 <div className={styles.timerboard}>
                   <SevenSegmentDisplay count={count} />
                 </div>
@@ -349,7 +328,6 @@ const Home = () => {
               <div className={styles.boardstyle}>
                 {board.map((row, y) =>
                   row.map((cell, x) => {
-                    // ゲームが終了しており、かつセルが爆弾である場合は爆弾を表示する
                     if (isFailure && bombMap[y][x] === 1) {
                       return (
                         <div
