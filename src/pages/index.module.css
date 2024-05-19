@@ -159,9 +159,6 @@ background-color: blue; */
   display: flex;
 }
 
-.flagnumber {
-}
-
 .digit {
   display: inline-block;
   width: 20px;

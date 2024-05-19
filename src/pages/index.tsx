@@ -20,7 +20,7 @@ const Home = () => {
       </div>
     );
   };
-
+  const bombcount = 10;
   const board: number[][] = [
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
@@ -129,7 +129,6 @@ const Home = () => {
 
     const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
     let bombcountnow = 0;
-    const bombcount = 10;
 
     if (Num(1) === 0) {
       while (bombcountnow < bombcount) {
@@ -261,7 +260,6 @@ const Home = () => {
   };
 
   const NumInput = (col: number) => newUserIn.flat().filter((c) => c === col).length;
-  const flagcount = 10;
 
   // console.table(newUserIn);
   // console.table(board);
@@ -294,7 +292,7 @@ const Home = () => {
             >
               <div className={styles.flagflame}>
                 <div className={styles.flagboard}>
-                  <span className={styles.digit}>{flagcount - NumInput(3)}</span>
+                  <span className={styles.digit}>{bombcount - NumInput(3)}</span>
                 </div>
               </div>
               <div className={styles.resetoutflame}>
