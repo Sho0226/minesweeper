@@ -164,8 +164,9 @@ background-color: blue; */
   width: 20px;
   height: 10px;
   font-size: 30px;
+  font-weight: bold;
   line-height: 10px;
-  color: red;
+  color: #f00;
   text-align: center;
   background: black;
   border-radius: 5px;
@@ -220,18 +221,18 @@ background-color: blue; */
 }
 
 .difficulty {
-  position: fixed; /* 固定位置にする */
-  top: 90px; /* 上からの位置 */
+  position: fixed;
+  top: 90px;
   left: 515px;
   display: flex;
   gap: 15px;
-  margin-bottom: 20px; /* コンテンツの間にスペースを追加 */
+  margin-bottom: 20px;
 }
 
 .levelLink {
   font-family: Arial, sans-serif;
   font-size: 18px;
-  color: #23527c; /* デフォルトのリンクカラー */
+  color: #23527c;
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s;
@@ -242,8 +243,8 @@ background-color: blue; */
 }
 
 .levelLink.active {
-  font-weight: bold; /* アクティブリンクを太字に */
-  color: black; /* アクティブリンクのカラー */
+  font-weight: bold;
+  color: #444;
 }
 
 /* #c6c6c6;うすい灰色 */
