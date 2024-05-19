@@ -270,30 +270,30 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <div className={styles.difficulty}>
-        <button
-          className={`${styles.levelButton} ${difficulty === 'Easy' ? styles.active : ''}`}
+        <a
+          className={`${styles.levelLink} ${difficulty === 'Easy' ? styles.active : ''}`}
           onClick={() => setDifficulty('Easy')}
         >
-          Easy
-        </button>
-        <button
-          className={`${styles.levelButton} ${difficulty === 'Normal' ? styles.active : ''}`}
+          初級
+        </a>
+        <a
+          className={`${styles.levelLink} ${difficulty === 'Normal' ? styles.active : ''}`}
           onClick={() => setDifficulty('Normal')}
         >
-          Normal
-        </button>
-        <button
-          className={`${styles.levelButton} ${difficulty === 'Hard' ? styles.active : ''}`}
+          中級
+        </a>
+        <a
+          className={`${styles.levelLink} ${difficulty === 'Hard' ? styles.active : ''}`}
           onClick={() => setDifficulty('Hard')}
         >
-          Hard
-        </button>
-        <button
-          className={`${styles.levelButton} ${difficulty === 'Custom' ? styles.active : ''}`}
+          上級
+        </a>
+        <a
+          className={`${styles.levelLink} ${difficulty === 'Custom' ? styles.active : ''}`}
           onClick={() => setDifficulty('Custom')}
         >
-          Custom
-        </button>
+          カスタム
+        </a>
       </div>
       <div className={styles.minesweepercontainer}>
         <div

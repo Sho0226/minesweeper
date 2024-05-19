@@ -220,30 +220,30 @@ background-color: blue; */
 }
 
 .difficulty {
+  position: fixed; /* 固定位置にする */
+  top: 90px; /* 上からの位置 */
+  left: 515px;
   display: flex;
   gap: 15px;
   margin-bottom: 20px; /* コンテンツの間にスペースを追加 */
 }
 
-.levelButton {
-  padding: 10px 20px;
+.levelLink {
   font-family: Arial, sans-serif;
   font-size: 18px;
   color: blue; /* デフォルトのリンクカラー */
+  text-decoration: none;
   cursor: pointer;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  transition: background-color 0.3s;
+  transition: color 0.3s;
 }
 
-.levelButton:hover {
-  background-color: #e0e0e0;
+.levelLink:hover {
+  text-decoration: underline;
 }
 
-.levelButton.active {
+.levelLink.active {
   font-weight: bold; /* アクティブリンクを太字に */
   color: black; /* アクティブリンクのカラー */
-  background-color: #d0d0d0;
 }
 
 /* #c6c6c6;うすい灰色 */
