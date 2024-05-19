@@ -6,6 +6,7 @@ import styles from './index.module.css';
 
 const Home = () => {
   const [count, setCount] = useState<number>(0);
+  const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard' | 'Custom'>('Hard');
   const SevenSegmentDisplay: React.FC<{ count: number }> = ({ count }) => {
     // count を3桁にするために左を0で埋める
     const formattedCount = String(count).padStart(3, '0');
@@ -268,6 +269,32 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.difficulty}>
+        <button
+          className={`${styles.levelButton} ${difficulty === 'Easy' ? styles.active : ''}`}
+          onClick={() => setDifficulty('Easy')}
+        >
+          Easy
+        </button>
+        <button
+          className={`${styles.levelButton} ${difficulty === 'Normal' ? styles.active : ''}`}
+          onClick={() => setDifficulty('Normal')}
+        >
+          Normal
+        </button>
+        <button
+          className={`${styles.levelButton} ${difficulty === 'Hard' ? styles.active : ''}`}
+          onClick={() => setDifficulty('Hard')}
+        >
+          Hard
+        </button>
+        <button
+          className={`${styles.levelButton} ${difficulty === 'Custom' ? styles.active : ''}`}
+          onClick={() => setDifficulty('Custom')}
+        >
+          Custom
+        </button>
+      </div>
       <div className={styles.minesweepercontainer}>
         <div
           className={styles.gameoverboardflame}
