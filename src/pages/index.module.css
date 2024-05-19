@@ -231,7 +231,7 @@ background-color: blue; */
 .levelLink {
   font-family: Arial, sans-serif;
   font-size: 18px;
-  color: blue; /* デフォルトのリンクカラー */
+  color: #23527c; /* デフォルトのリンクカラー */
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s;
