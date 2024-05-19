@@ -260,6 +260,9 @@ const Home = () => {
     }
   };
 
+  const NumInput = (col: number) => newUserIn.flat().filter((c) => c === col).length;
+  const flagcount = 10;
+
   // console.table(newUserIn);
   // console.table(board);
   console.table(newBombMap);
@@ -291,7 +294,7 @@ const Home = () => {
             >
               <div className={styles.flagflame}>
                 <div className={styles.flagboard}>
-                  <div className={styles.flagnumber} />
+                  <span className={styles.digit}>{flagcount - NumInput(3)}</span>
                 </div>
               </div>
               <div className={styles.resetoutflame}>
