@@ -21,7 +21,7 @@ const Home = () => {
     );
   };
 
-  const bombcount = 10;
+  const bombcount = 75;
   const board: number[][] = [
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
