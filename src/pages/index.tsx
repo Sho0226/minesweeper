@@ -6,7 +6,6 @@ import styles from './index.module.css';
 
 const Home = () => {
   const [count, setCount] = useState<number>(0);
-  const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard' | 'Custom'>('Easy');
   const SevenSegmentDisplay: React.FC<{ count: number }> = ({ count }) => {
     const formattedCount = String(count).padStart(3, '0');
 
@@ -20,6 +19,8 @@ const Home = () => {
       </div>
     );
   };
+
+  const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard'>('Easy');
   let bombcount: number;
   let board: number[][];
   let bombboard: number[][];
@@ -38,6 +39,9 @@ const Home = () => {
     board = generateboard(9, 9, -1);
     bombboard = generateboard(9, 9, 0);
     inputboard = generateboard(9, 9, 0);
+    console.table(board);
+    console.table(bombboard);
+    console.table(inputboard);
   } else if (difficulty === 'Normal') {
     bombcount = 40;
     board = generateboard(16, 16, -1);
@@ -48,16 +52,20 @@ const Home = () => {
     board = generateboard(16, 30, -1);
     bombboard = generateboard(16, 30, 0);
     inputboard = generateboard(16, 30, 0);
+    console.table(board);
+    console.table(bombboard);
+    console.table(inputboard);
   } else {
-    bombcount = 10; // Default value or handle other cases if needed
+    bombcount = 10;
     board = generateboard(9, 9, -1);
-    generateboard(9, 9, 0);
     bombboard = generateboard(9, 9, 0);
     inputboard = generateboard(9, 9, 0);
   }
 
   const [bombMap, setBombMap] = useState(bombboard);
   const [userIn, setUserIn] = useState(inputboard);
+  console.table(bombMap);
+  console.table(userIn);
 
   const newBombMap = structuredClone(bombMap);
   const newUserIn = structuredClone(userIn);
@@ -92,18 +100,18 @@ const Home = () => {
       return true;
     }),
   );
-  useEffect(() => {
-    if (isClear || isFailure) {
-      return;
-    }
-    if (isPlaying) {
-      const interval = setInterval(() => {
-        setCount((count) => count + 1);
-      }, 1000);
+  // useEffect(() => {
+  //   if (isClear || isFailure) {
+  //     return;
+  //   }
+  //   if (isPlaying) {
+  //     const interval = setInterval(() => {
+  //       setCount((count) => count + 1);
+  //     }, 1000);
 
-      return () => clearInterval(interval);
-    }
-  }, [isClear, isFailure, isPlaying]);
+  //     return () => clearInterval(interval);
+  //   }
+  // }, [isClear, isFailure, isPlaying]);
 
   const clickHandler = (x: number, y: number) => {
     if (isFailure || isClear) return;
@@ -176,7 +184,7 @@ const Home = () => {
     // console.table(userIn);
 
     if (aroundcount === 0) {
-      console.log(3);
+      // console.log(3);
       userIn[i][j] = 1;
       for (const direct of directions) {
         const [I, J] = direct;
@@ -233,9 +241,6 @@ const Home = () => {
   const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
   // const NumInput = (col: number) => newUserIn.flat().filter((c) => c === col).length;
 
-  console.table(newUserIn);
-  console.table(board);
-  console.table(newBombMap);
   updateboard();
 
   return (
@@ -259,12 +264,12 @@ const Home = () => {
         >
           上級
         </a>
-        <a
+        {/* <a
           className={`${styles.levelLink} ${difficulty === 'Custom' ? styles.active : ''}`}
           onClick={() => setDifficulty('Custom')}
         >
           カスタム
-        </a>
+        </a> */}
       </div>
       <div className={styles.minesweepercontainer}>
         <div
@@ -315,8 +320,12 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className={styles.boardflame}>
-              <div className={styles.boardstyle}>
+            <div
+              className={`${difficulty === 'Easy' ? styles.boardflame1 : ''} ${difficulty === 'Normal' ? styles.boardflame2 : ''} ${difficulty === 'Hard' ? styles.boardflame3 : ''}`}
+            >
+              <div
+                className={`${difficulty === 'Easy' ? styles.boardstyle1 : ''} ${difficulty === 'Normal' ? styles.boardstyle2 : ''} ${difficulty === 'Hard' ? styles.boardstyle3 : ''}`}
+              >
                 {board.map((row, y) =>
                   row.map((cell, x) => {
                     if (isFailure && bombMap[y][x] === 1) {
