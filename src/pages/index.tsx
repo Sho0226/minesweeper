@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import React, { useEffect } from 'react';
 import styles from './index.module.css';
-// import img1 from '/src/assets/images/1.png';
-// import Image from 'next/image';
 
 const Home = () => {
   const [count, setCount] = useState<number>(0);
+
   const SevenSegmentDisplay: React.FC<{ count: number }> = ({ count }) => {
     const formattedCount = String(count).padStart(3, '0');
 
@@ -30,37 +29,28 @@ const Home = () => {
     [...Array(y)].map(() => [...Array(x)].map(() => fill));
 
   if (difficulty === 'Easy') {
-    bombcount = 10;
     board = generateboard(9, 9, -1);
     bombboard = generateboard(9, 9, 0);
     inputboard = generateboard(9, 9, 0);
-
-    console.table(board);
-    console.table(bombboard);
-    console.table(inputboard);
+    bombcount = 10;
   } else if (difficulty === 'Normal') {
-    bombcount = 40;
     board = generateboard(16, 16, -1);
     bombboard = generateboard(16, 16, 0);
     inputboard = generateboard(16, 16, 0);
-    console.table(board);
-    console.table(bombboard);
-    console.table(inputboard);
+    bombcount = 40;
   } else {
-    bombcount = 99;
     board = generateboard(16, 30, -1);
     bombboard = generateboard(16, 30, 0);
     inputboard = generateboard(16, 30, 0);
-    console.table(board);
-    console.table(bombboard);
-    console.table(inputboard);
+    bombcount = 99;
   }
+
+  useEffect(() => {
+    resetgame();
+  }, [difficulty]);
 
   const [bombMap, setBombMap] = useState(bombboard);
   const [userIn, setUserIn] = useState(inputboard);
-
-  const newBombMap = structuredClone(bombMap);
-  const newUserIn = structuredClone(userIn);
 
   const updateboard = () => {
     bombMap.forEach((row, i) => {
@@ -79,6 +69,7 @@ const Home = () => {
       });
     });
   };
+
   const resetgame = () => {
     setCount(0);
     setBombMap(bombboard);
@@ -97,6 +88,7 @@ const Home = () => {
       return true;
     }),
   );
+
   useEffect(() => {
     if (isClear || isFailure) {
       return;
@@ -113,10 +105,11 @@ const Home = () => {
   const clickHandler = (x: number, y: number) => {
     if (isFailure || isClear) return;
 
-    const Num = (col: number) => newBombMap.flat().filter((c) => c === col).length;
+    const Num = (col: number) => bombMap.flat().filter((c) => c === col).length;
     let bombcountnow = 0;
 
     if (Num(1) === 0) {
+      const newBombMap = structuredClone(bombMap);
       while (bombcountnow < bombcount) {
         const randomY = Math.floor(Math.random() * newBombMap.length);
         const randomX = Math.floor(Math.random() * newBombMap[0].length);
@@ -125,14 +118,13 @@ const Home = () => {
           bombcountnow++;
         }
       }
+      setBombMap(newBombMap);
     }
 
-    // console.log('0は', Num(0), '1は', Num(1));
-    setBombMap(newBombMap);
+    const newUserIn = structuredClone(userIn);
 
     if (board[y][x] === -1 && userIn[y][x] === 0) {
       newUserIn[y][x] = 1;
-
       setUserIn(newUserIn);
     }
 
@@ -140,11 +132,8 @@ const Home = () => {
       isFailure;
     }
   };
-  // console.table(userIn);
-  // console.table(board);
 
   const arounder = (i: number, j: number) => {
-    // console.log(1);
     const directions = [
       [-1, 0],
       [-1, -1],
@@ -156,16 +145,11 @@ const Home = () => {
       [-1, 1],
     ];
 
-    // 周囲のボムの数をカウントするための変数
     let aroundcount = 0;
 
-    // 全ての方向に対して処理を繰り返す
     for (const direct of directions) {
       const [I, J] = direct;
-
-      // ボードの範囲内であることを確認
       if (j + J >= 0 && j + J < board.length && i + I >= 0 && j + J < board[0].length) {
-        // 周囲にボムがある場合はカウントを増やす
         if (bombMap[i + I] !== undefined && bombMap[i + I][j + J] !== undefined) {
           if (bombMap[i + I][j + J] === 1) {
             aroundcount++;
@@ -174,20 +158,14 @@ const Home = () => {
         }
       }
     }
-    // console.log(4);
-    // 周囲のボムの数を設定
+
     board[i][j] = aroundcount;
-    // console.log(aroundcount, '回');
-    // console.table(userIn);
 
     if (aroundcount === 0) {
-      // console.log(3);
       userIn[i][j] = 1;
       for (const direct of directions) {
         const [I, J] = direct;
-        // ボードの範囲内であることを確認
         if (j + J >= 0 && j + J < board.length && i + I >= 0 && i + I < board[0].length) {
-          // 未探索のセルに対して再帰的に arounder を呼び出す
           if (bombMap[i + I][j + J] === 1 && (userIn[i][j] === 2 || userIn[i][j] === 3)) {
             userIn[i][j] = 0;
           }
@@ -196,12 +174,10 @@ const Home = () => {
             userIn[i + I][j + J] === 2 ||
             userIn[i + I][j + J] === 3
           ) {
-            // 旗または？の場合はリセットする
             if (userIn[i + I][j + J] === 2 || userIn[i + I][j + J] === 3) {
               userIn[i + I][j + J] = 0;
             }
             if (board[i + I][j + J] === -1) {
-              // console.log(2);
               board[i + I][j + J] = aroundcount + 1;
               userIn[i + I][j + J] = 1;
 
@@ -215,47 +191,37 @@ const Home = () => {
 
   const RightClick = (event: React.MouseEvent, x: number, y: number) => {
     event.preventDefault();
-    console.log(1);
 
     if (isFailure || isClear) return;
 
-    console.log(2);
+    const newUserIn = structuredClone(userIn);
 
-    if (board[y][x] === -1 && userIn[y][x] === 0) {
+    if (board[y][x] === -1 && newUserIn[y][x] === 0) {
       newUserIn[y][x] = 3;
-      console.log(3);
       setUserIn(newUserIn);
-    }
-    if (userIn[y][x] === 3) {
+    } else if (newUserIn[y][x] === 3) {
       newUserIn[y][x] = 2;
       setUserIn(newUserIn);
-    }
-    if (userIn[y][x] === 2) {
+    } else if (newUserIn[y][x] === 2) {
       newUserIn[y][x] = 0;
       setUserIn(newUserIn);
     }
   };
+
   const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
-  // const NumInput = (col: number) => newUserIn.flat().filter((c) => c === col).length;
 
   updateboard();
 
-  // console.table(newBombMap);
-  // console.table(newUserIn);
-  // console.table(board);
   const handleEasyClick = () => {
     setDifficulty('Easy');
-    resetgame();
   };
 
   const handleNormalClick = () => {
     setDifficulty('Normal');
-    resetgame();
   };
 
   const handleHardClick = () => {
     setDifficulty('Hard');
-    resetgame();
   };
 
   return (
@@ -263,28 +229,22 @@ const Home = () => {
       <div className={styles.difficulty}>
         <a
           className={`${styles.levelLink} ${difficulty === 'Easy' ? styles.active : ''}`}
-          onClick={() => handleEasyClick()}
+          onClick={handleEasyClick}
         >
           初級
         </a>
         <a
           className={`${styles.levelLink} ${difficulty === 'Normal' ? styles.active : ''}`}
-          onClick={() => handleNormalClick()}
+          onClick={handleNormalClick}
         >
           中級
         </a>
         <a
           className={`${styles.levelLink} ${difficulty === 'Hard' ? styles.active : ''}`}
-          onClick={() => handleHardClick()}
+          onClick={handleHardClick}
         >
           上級
         </a>
-        {/* <a
-          className={`${styles.levelLink} ${difficulty === 'Custom' ? styles.active : ''}`}
-          onClick={() => setDifficulty('Custom')}
-        >
-          カスタム
-        </a> */}
       </div>
       <div className={styles.minesweepercontainer}>
         <div
@@ -306,9 +266,7 @@ const Home = () => {
           <div className={styles.boardcontainer}>
             <div
               className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''}`}
-              onClick={() => {
-                resetgame();
-              }}
+              onClick={resetgame}
             >
               <div className={styles.flagflame}>
                 <div className={styles.flagboard}>
@@ -352,12 +310,8 @@ const Home = () => {
                         <div
                           className={`${styles.cellstyle} ${styles.samplestyle} `}
                           key={`${x}-${y}`}
-                          onClick={() => {
-                            clickHandler(x, y);
-                          }}
-                          onContextMenu={(event) => {
-                            RightClick(event, x, y);
-                          }}
+                          onClick={() => clickHandler(x, y)}
+                          onContextMenu={(event) => RightClick(event, x, y)}
                           style={{
                             backgroundPosition: `-300px 0px`,
                             backgroundColor: bombMap[y][x] === 1 && userIn[y][x] === 1 ? `red` : '',
@@ -369,12 +323,8 @@ const Home = () => {
                         <div
                           className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : cell === 9 || cell === 10 ? `${styles.stonestyle} ${styles.flag} ${styles.question}` : ''}`}
                           key={`${x}-${y}`}
-                          onClick={() => {
-                            clickHandler(x, y);
-                          }}
-                          onContextMenu={(event) => {
-                            RightClick(event, x, y);
-                          }}
+                          onClick={() => clickHandler(x, y)}
+                          onContextMenu={(event) => RightClick(event, x, y)}
                           style={{
                             backgroundPosition:
                               cell === 9 || cell === 10
