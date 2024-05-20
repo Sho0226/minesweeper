@@ -300,10 +300,12 @@ const Home = () => {
             </span>
           </div>
         </div>
-        <div className={styles.boardoutsideflame}>
+        <div
+          className={`${difficulty === 'Easy' ? styles.boardoutsideflame1 : ''} ${difficulty === 'Normal' ? styles.boardoutsideflame2 : ''} ${difficulty === 'Hard' ? styles.boardoutsideflame3 : ''}`}
+        >
           <div className={styles.boardcontainer}>
             <div
-              className={styles.topflame}
+              className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''}`}
               onClick={() => {
                 resetgame();
               }}
@@ -313,7 +315,9 @@ const Home = () => {
                   <span className={styles.digit}>{bombcount - NumBoard(10)}</span>
                 </div>
               </div>
-              <div className={styles.resetoutflame}>
+              <div
+                className={`${difficulty === 'Easy' ? styles.resetoutflame1 : ''} ${difficulty === 'Normal' ? styles.resetoutflame2 : ''} ${difficulty === 'Hard' ? styles.resetoutflame3 : ''}`}
+              >
                 <div className={styles.resetflame}>
                   <div
                     className={styles.reset}
