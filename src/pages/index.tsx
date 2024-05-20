@@ -18,8 +18,13 @@ const Home = () => {
       </div>
     );
   };
+  const resetgame = () => {
+    setCount(0);
+    setBombMap(bombboard);
+    setUserIn(inputboard);
+  };
 
-  const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard'>('Easy');
+  const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard'>('Hard');
   let bombcount: number;
   let board: number[][];
   let bombboard: number[][];
@@ -38,16 +43,17 @@ const Home = () => {
     bombboard = generateboard(16, 16, 0);
     inputboard = generateboard(16, 16, 0);
     bombcount = 40;
-  } else {
+  } else if (difficulty === 'Hard') {
     board = generateboard(16, 30, -1);
     bombboard = generateboard(16, 30, 0);
     inputboard = generateboard(16, 30, 0);
     bombcount = 99;
+  } else {
+    board = generateboard(9, 9, -1);
+    bombboard = generateboard(9, 9, 0);
+    inputboard = generateboard(9, 9, 0);
+    bombcount = 10;
   }
-
-  useEffect(() => {
-    resetgame();
-  }, [difficulty]);
 
   const [bombMap, setBombMap] = useState(bombboard);
   const [userIn, setUserIn] = useState(inputboard);
@@ -68,12 +74,6 @@ const Home = () => {
         }
       });
     });
-  };
-
-  const resetgame = () => {
-    setCount(0);
-    setBombMap(bombboard);
-    setUserIn(inputboard);
   };
 
   const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
@@ -223,6 +223,10 @@ const Home = () => {
   const handleHardClick = () => {
     setDifficulty('Hard');
   };
+
+  console.table(board);
+  console.table(bombMap);
+  console.table(userIn);
 
   return (
     <div className={styles.container}>
