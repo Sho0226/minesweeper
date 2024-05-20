@@ -1,6 +1,4 @@
 .container {
-  position: fixed;
-  left: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -217,9 +215,6 @@ background-color: blue; */
 }
 
 .difficulty {
-  position: fixed;
-  top: 90px;
-  left: 515px;
   display: flex;
   gap: 15px;
   margin-bottom: 20px;

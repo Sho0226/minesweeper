@@ -20,60 +20,51 @@ const Home = () => {
       </div>
     );
   };
+  let bombcount: number;
+  let board: number[][];
+  let bombboard: number[][];
+  let inputboard: number[][];
 
-  const bombcount = 75;
-  const board: number[][] = [
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-  ];
-
-  const array = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ];
-
-  const inputArray: (0 | 1 | 2 | 3)[][] = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ];
-
-  const [bombMap, setBombMap] = useState(array);
-
-  const [userIn, setUserIn] = useState(inputArray);
-
+  const generateboard = (x: number, y: number, fill: number) =>
+    [...Array(y)].map(() => [...Array(x)].map(() => fill));
   const resetgame = () => {
     setCount(0);
-    setBombMap(array);
-    setUserIn(inputArray);
+    setBombMap(bombboard);
+    setUserIn(inputboard);
   };
+
+  if (difficulty === 'Easy') {
+    bombcount = 10;
+    board = generateboard(9, 9, -1);
+    bombboard = generateboard(9, 9, 0);
+    inputboard = generateboard(9, 9, 0);
+  } else if (difficulty === 'Normal') {
+    bombcount = 40;
+    board = generateboard(16, 16, -1);
+    bombboard = generateboard(16, 16, 0);
+    inputboard = generateboard(16, 16, 0);
+  } else if (difficulty === 'Hard') {
+    bombcount = 99;
+    board = generateboard(16, 30, -1);
+    bombboard = generateboard(16, 30, 0);
+    inputboard = generateboard(16, 30, 0);
+  } else {
+    bombcount = 10; // Default value or handle other cases if needed
+    board = generateboard(9, 9, -1);
+    generateboard(9, 9, 0);
+    bombboard = generateboard(9, 9, 0);
+    inputboard = generateboard(9, 9, 0);
+  }
+
+  const [bombMap, setBombMap] = useState(bombboard);
+  const [userIn, setUserIn] = useState(inputboard);
 
   const newBombMap = structuredClone(bombMap);
   const newUserIn = structuredClone(userIn);
 
   const updateboard = () => {
-    for (let i = 0; i < 9; i++) {
-      for (let j = 0; j < 9; j++) {
+    bombMap.forEach((row, i) => {
+      row.forEach((cell, j) => {
         if (bombMap[i][j] === 1 && userIn[i][j] === 1) {
           board[i][j] = 11;
         } else if (userIn[i][j] === 1) {
@@ -85,8 +76,8 @@ const Home = () => {
         } else if (isClear && bombMap[i][j] === 1) {
           board[i][j] = 10;
         }
-      }
-    }
+      });
+    });
   };
 
   const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
@@ -242,8 +233,8 @@ const Home = () => {
   const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
   // const NumInput = (col: number) => newUserIn.flat().filter((c) => c === col).length;
 
-  // console.table(newUserIn);
-  // console.table(board);
+  console.table(newUserIn);
+  console.table(board);
   console.table(newBombMap);
   updateboard();
 
