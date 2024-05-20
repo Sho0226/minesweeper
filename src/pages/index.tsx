@@ -4,7 +4,6 @@ import styles from './index.module.css';
 
 const Home = () => {
   const [count, setCount] = useState<number>(0);
-
   const SevenSegmentDisplay: React.FC<{ count: number }> = ({ count }) => {
     const formattedCount = String(count).padStart(3, '0');
 
@@ -18,13 +17,14 @@ const Home = () => {
       </div>
     );
   };
+
+  const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard'>('Easy');
   const resetgame = () => {
     setCount(0);
     setBombMap(bombboard);
     setUserIn(inputboard);
   };
 
-  const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard'>('Hard');
   let bombcount: number;
   let board: number[][];
   let bombboard: number[][];
@@ -43,16 +43,11 @@ const Home = () => {
     bombboard = generateboard(16, 16, 0);
     inputboard = generateboard(16, 16, 0);
     bombcount = 40;
-  } else if (difficulty === 'Hard') {
+  } else {
     board = generateboard(16, 30, -1);
     bombboard = generateboard(16, 30, 0);
     inputboard = generateboard(16, 30, 0);
     bombcount = 99;
-  } else {
-    board = generateboard(9, 9, -1);
-    bombboard = generateboard(9, 9, 0);
-    inputboard = generateboard(9, 9, 0);
-    bombcount = 10;
   }
 
   const [bombMap, setBombMap] = useState(bombboard);
@@ -214,14 +209,20 @@ const Home = () => {
 
   const handleEasyClick = () => {
     setDifficulty('Easy');
+
+    resetgame();
   };
 
   const handleNormalClick = () => {
     setDifficulty('Normal');
+
+    resetgame();
   };
 
   const handleHardClick = () => {
     setDifficulty('Hard');
+
+    resetgame();
   };
 
   console.table(board);
