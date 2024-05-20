@@ -21,7 +21,7 @@ const Home = () => {
     );
   };
 
-  const bombcount = 10;
+  const bombcount = 75;
   const board: number[][] = [
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
@@ -88,7 +88,7 @@ const Home = () => {
       }
     }
   };
-  // const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
+
   const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
   const isFailure = userIn.some((row, y) =>
     row.some((input, x) => input === 1 && bombMap[y][x] === 1),
@@ -239,8 +239,8 @@ const Home = () => {
       setUserIn(newUserIn);
     }
   };
-
-  const NumInput = (col: number) => newUserIn.flat().filter((c) => c === col).length;
+  const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
+  // const NumInput = (col: number) => newUserIn.flat().filter((c) => c === col).length;
 
   // console.table(newUserIn);
   // console.table(board);
@@ -299,7 +299,7 @@ const Home = () => {
             >
               <div className={styles.flagflame}>
                 <div className={styles.flagboard}>
-                  <span className={styles.digit}>{bombcount - NumInput(3)}</span>
+                  <span className={styles.digit}>{bombcount - NumBoard(3)}</span>
                 </div>
               </div>
               <div className={styles.resetoutflame}>
