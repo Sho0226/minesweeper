@@ -21,7 +21,7 @@ const Home = () => {
     );
   };
 
-  const bombcount = 75;
+  const bombcount = 10;
   const board: number[][] = [
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
@@ -299,7 +299,7 @@ const Home = () => {
             >
               <div className={styles.flagflame}>
                 <div className={styles.flagboard}>
-                  <span className={styles.digit}>{bombcount - NumBoard(3)}</span>
+                  <span className={styles.digit}>{bombcount - NumBoard(10)}</span>
                 </div>
               </div>
               <div className={styles.resetoutflame}>
