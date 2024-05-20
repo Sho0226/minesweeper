@@ -28,17 +28,13 @@ const Home = () => {
 
   const generateboard = (x: number, y: number, fill: number) =>
     [...Array(y)].map(() => [...Array(x)].map(() => fill));
-  const resetgame = () => {
-    setCount(0);
-    setBombMap(bombboard);
-    setUserIn(inputboard);
-  };
 
   if (difficulty === 'Easy') {
     bombcount = 10;
     board = generateboard(9, 9, -1);
     bombboard = generateboard(9, 9, 0);
     inputboard = generateboard(9, 9, 0);
+
     console.table(board);
     console.table(bombboard);
     console.table(inputboard);
@@ -47,7 +43,10 @@ const Home = () => {
     board = generateboard(16, 16, -1);
     bombboard = generateboard(16, 16, 0);
     inputboard = generateboard(16, 16, 0);
-  } else if (difficulty === 'Hard') {
+    console.table(board);
+    console.table(bombboard);
+    console.table(inputboard);
+  } else {
     bombcount = 99;
     board = generateboard(16, 30, -1);
     bombboard = generateboard(16, 30, 0);
@@ -55,17 +54,10 @@ const Home = () => {
     console.table(board);
     console.table(bombboard);
     console.table(inputboard);
-  } else {
-    bombcount = 10;
-    board = generateboard(9, 9, -1);
-    bombboard = generateboard(9, 9, 0);
-    inputboard = generateboard(9, 9, 0);
   }
 
   const [bombMap, setBombMap] = useState(bombboard);
   const [userIn, setUserIn] = useState(inputboard);
-  console.table(bombMap);
-  console.table(userIn);
 
   const newBombMap = structuredClone(bombMap);
   const newUserIn = structuredClone(userIn);
@@ -87,6 +79,11 @@ const Home = () => {
       });
     });
   };
+  const resetgame = () => {
+    setCount(0);
+    setBombMap(bombboard);
+    setUserIn(inputboard);
+  };
 
   const isPlaying = userIn.some((row) => row.some((input) => input !== 0));
   const isFailure = userIn.some((row, y) =>
@@ -100,18 +97,18 @@ const Home = () => {
       return true;
     }),
   );
-  // useEffect(() => {
-  //   if (isClear || isFailure) {
-  //     return;
-  //   }
-  //   if (isPlaying) {
-  //     const interval = setInterval(() => {
-  //       setCount((count) => count + 1);
-  //     }, 1000);
+  useEffect(() => {
+    if (isClear || isFailure) {
+      return;
+    }
+    if (isPlaying) {
+      const interval = setInterval(() => {
+        setCount((count) => count + 1);
+      }, 1000);
 
-  //     return () => clearInterval(interval);
-  //   }
-  // }, [isClear, isFailure, isPlaying]);
+      return () => clearInterval(interval);
+    }
+  }, [isClear, isFailure, isPlaying]);
 
   const clickHandler = (x: number, y: number) => {
     if (isFailure || isClear) return;
@@ -243,24 +240,42 @@ const Home = () => {
 
   updateboard();
 
+  // console.table(newBombMap);
+  // console.table(newUserIn);
+  // console.table(board);
+  const handleEasyClick = () => {
+    setDifficulty('Easy');
+    resetgame();
+  };
+
+  const handleNormalClick = () => {
+    setDifficulty('Normal');
+    resetgame();
+  };
+
+  const handleHardClick = () => {
+    setDifficulty('Hard');
+    resetgame();
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.difficulty}>
         <a
           className={`${styles.levelLink} ${difficulty === 'Easy' ? styles.active : ''}`}
-          onClick={() => setDifficulty('Easy')}
+          onClick={() => handleEasyClick()}
         >
           初級
         </a>
         <a
           className={`${styles.levelLink} ${difficulty === 'Normal' ? styles.active : ''}`}
-          onClick={() => setDifficulty('Normal')}
+          onClick={() => handleNormalClick()}
         >
           中級
         </a>
         <a
           className={`${styles.levelLink} ${difficulty === 'Hard' ? styles.active : ''}`}
-          onClick={() => setDifficulty('Hard')}
+          onClick={() => handleHardClick()}
         >
           上級
         </a>
