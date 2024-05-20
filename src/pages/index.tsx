@@ -6,9 +6,8 @@ import styles from './index.module.css';
 
 const Home = () => {
   const [count, setCount] = useState<number>(0);
-  const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard' | 'Custom'>('Hard');
+  const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard' | 'Custom'>('Easy');
   const SevenSegmentDisplay: React.FC<{ count: number }> = ({ count }) => {
-    // count を3桁にするために左を0で埋める
     const formattedCount = String(count).padStart(3, '0');
 
     return (
@@ -21,6 +20,22 @@ const Home = () => {
       </div>
     );
   };
+  if (difficulty === 'Easy') {
+    const boord: number[][] = [
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1],
+    ];
+
+    const bombcount = 10;
+  }
+
   const bombcount = 10;
   const board: number[][] = [
     [-1, -1, -1, -1, -1, -1, -1, -1, -1],
