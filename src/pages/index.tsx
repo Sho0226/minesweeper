@@ -293,11 +293,11 @@ const Home = () => {
           </div>
         </div>
         <div
-          className={`${difficulty === 'Easy' ? styles.boardoutsideflame1 : ''} ${difficulty === 'Normal' ? styles.boardoutsideflame2 : ''} ${difficulty === 'Hard' ? styles.boardoutsideflame3 : ''}`}
+          className={`${difficulty === 'Easy' ? styles.boardoutsideflame1 : ''} ${difficulty === 'Normal' ? styles.boardoutsideflame2 : ''} ${difficulty === 'Hard' ? styles.boardoutsideflame3 : ''} ${difficulty === 'Custom' ? styles.boardoutsideflame3 : ''}`}
         >
           <div className={styles.boardcontainer}>
             <div
-              className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''}`}
+              className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''} ${difficulty === 'Custom' ? styles.topflamecustom : ''}`}
               onClick={() => difficultResetgame(difficulty)}
             >
               <div className={styles.flagflame}>
@@ -306,7 +306,7 @@ const Home = () => {
                 </div>
               </div>
               <div
-                className={`${difficulty === 'Easy' ? styles.resetoutflame1 : ''} ${difficulty === 'Normal' ? styles.resetoutflame2 : ''} ${difficulty === 'Hard' ? styles.resetoutflame3 : ''}`}
+                className={`${difficulty === 'Easy' ? styles.resetoutflame1 : ''} ${difficulty === 'Normal' ? styles.resetoutflame2 : ''} ${difficulty === 'Hard' ? styles.resetoutflame3 : ''} ${difficulty === 'Custom' ? styles.resetoutflamecustom : ''}`}
               >
                 <div className={styles.resetflame}>
                   <div
@@ -330,10 +330,10 @@ const Home = () => {
               </div>
             </div>
             <div
-              className={`${difficulty === 'Easy' ? styles.boardflame1 : ''} ${difficulty === 'Normal' ? styles.boardflame2 : ''} ${difficulty === 'Hard' ? styles.boardflame3 : ''}`}
+              className={`${difficulty === 'Easy' ? styles.boardflame1 : ''} ${difficulty === 'Normal' ? styles.boardflame2 : ''} ${difficulty === 'Hard' ? styles.boardflame3 : ''} ${difficulty === 'Custom' ? styles.boardflamecustom : ''}`}
             >
               <div
-                className={`${difficulty === 'Easy' ? styles.boardstyle1 : ''} ${difficulty === 'Normal' ? styles.boardstyle2 : ''} ${difficulty === 'Hard' ? styles.boardstyle3 : ''}`}
+                className={`${difficulty === 'Easy' ? styles.boardstyle1 : ''} ${difficulty === 'Normal' ? styles.boardstyle2 : ''} ${difficulty === 'Hard' ? styles.boardstyle3 : ''} ${difficulty === 'Custom' ? styles.boardstylecustom : ''}`}
               >
                 {board.map((row, y) =>
                   row.map((cell, x) => {
