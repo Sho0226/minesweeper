@@ -19,21 +19,18 @@ const Home = () => {
   };
 
   const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard' | 'Custom'>('Easy');
-  const [width, setWidth] = useState(287);
-  const [height, setHeight] = useState(287);
-  const [bombs, setBombs] = useState(287);
-
-  const handleUpdateClick = () => {
-    // 更新ボタンが押されたときの処理をここに記述します
-    console.log('幅:', width, '高さ:', height, '爆弾数:', bombs);
-  };
+  const [width, setWidth] = useState(9);
+  const [height, setHeight] = useState(9);
+  const [bombs, setBombs] = useState(10);
 
   const generateboard = (x: number, y: number, fill: number) =>
     [...Array(y)].map(() => [...Array(x)].map(() => fill));
+
   let board = generateboard(9, 9, -1);
   let bombcount = 10;
   let inputboard = generateboard(9, 9, 0);
   let bombboard = generateboard(9, 9, 0);
+
   if (difficulty === 'Easy') {
     board = generateboard(9, 9, -1);
     bombcount = 10;
@@ -44,12 +41,13 @@ const Home = () => {
     board = generateboard(30, 16, -1);
     bombcount = 99;
   } else {
-    board = generateboard(30, 16, -1);
-    bombcount = 99;
+    board = generateboard(width, height, -1);
+    bombcount = bombs;
   }
 
   const [bombMap, setBombMap] = useState(bombboard);
   const [userIn, setUserIn] = useState(inputboard);
+
   const difficultResetgame = (difficulty: 'Easy' | 'Normal' | 'Hard' | 'Custom') => {
     console.log(difficulty);
     if (difficulty === 'Easy') {
@@ -77,6 +75,11 @@ const Home = () => {
       setBombMap(bombboard);
       setUserIn(inputboard);
     }
+  };
+  const handleUpdateClick = () => {
+    difficultResetgame('Custom');
+
+    console.log('幅:', width, '高さ:', height, '爆弾数:', bombs);
   };
 
   const updateboard = () => {
