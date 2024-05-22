@@ -36,8 +36,8 @@ const Home = () => {
     board = generateboard(30, 16, -1);
     bombcount = 99;
   } else {
-    board = generateboard(9, 9, -1);
-    bombcount = 10;
+    board = generateboard(30, 16, -1);
+    bombcount = 99;
   }
 
   const [bombMap, setBombMap] = useState(bombboard);
@@ -63,8 +63,8 @@ const Home = () => {
       setBombMap(bombboard);
       setUserIn(inputboard);
     } else {
-      bombboard = generateboard(9, 9, 0);
-      inputboard = generateboard(9, 9, 0);
+      bombboard = generateboard(30, 16, 0);
+      inputboard = generateboard(30, 16, 0);
       setCount(0);
       setBombMap(bombboard);
       setUserIn(inputboard);
@@ -277,7 +277,21 @@ const Home = () => {
         >
           カスタム
         </a>
+
+        <a>
+          幅：
+          <input type="text" onChange={(event) => {}} />
+        </a>
+        <a>
+          高さ：
+          <input type="text" onChange={(event) => {}} />
+        </a>
+        <a>
+          爆弾数：
+          <input type="text" onChange={(event) => {}} />
+        </a>
       </div>
+
       <div className={styles.minesweepercontainer}>
         <div
           className={styles.gameoverboardflame}
