@@ -19,6 +19,14 @@ const Home = () => {
   };
 
   const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard' | 'Custom'>('Easy');
+  const [width, setWidth] = useState(287);
+  const [height, setHeight] = useState(287);
+  const [bombs, setBombs] = useState(287);
+
+  const handleUpdateClick = () => {
+    // 更新ボタンが押されたときの処理をここに記述します
+    console.log('幅:', width, '高さ:', height, '爆弾数:', bombs);
+  };
 
   const generateboard = (x: number, y: number, fill: number) =>
     [...Array(y)].map(() => [...Array(x)].map(() => fill));
@@ -286,17 +294,43 @@ const Home = () => {
       >
         <a>
           幅：
-          <input type="number" className={styles.inputtext} min="1" max="100" value="287" />
+          <input
+            type="number"
+            className={styles.inputtext}
+            min="1"
+            max="100"
+            value={width}
+            onChange={(e) => setWidth(Number(e.target.value))}
+          />
         </a>
         <a>
           高さ：
-          <input type="number" className={styles.inputtext} min="1" max="100" value="287" />
+          <input
+            type="number"
+            className={styles.inputtext}
+            min="1"
+            max="100"
+            value={height}
+            onChange={(e) => setHeight(Number(e.target.value))}
+          />
         </a>
         <a>
           爆弾数：
-          <input type="number" className={styles.inputtext} min="1" max="10000" value="287" />
+          <input
+            type="number"
+            className={styles.inputtext}
+            min="1"
+            max="10000"
+            value={bombs}
+            onChange={(e) => setBombs(Number(e.target.value))}
+          />
         </a>
-        <button type="submit" className={styles.update} data-loading-text="ダウンロード中...">
+        <button
+          type="button"
+          className={styles.update}
+          data-loading-text="ダウンロード中..."
+          onClick={handleUpdateClick}
+        >
           更新
         </button>
       </span>
