@@ -286,16 +286,19 @@ const Home = () => {
       >
         <a>
           幅：
-          <input type="text" onChange={(event) => {}} />
+          <input type="number" className={styles.inputtext} min="1" max="100" value="287" />
         </a>
         <a>
           高さ：
-          <input type="text" onChange={(event) => {}} />
+          <input type="number" className={styles.inputtext} min="1" max="100" value="287" />
         </a>
         <a>
           爆弾数：
-          <input type="text" onChange={(event) => {}} />
+          <input type="number" className={styles.inputtext} min="1" max="10000" value="287" />
         </a>
+        <button type="submit" className={styles.update} data-loading-text="ダウンロード中...">
+          更新
+        </button>
       </span>
 
       <div className={styles.minesweepercontainer}>
