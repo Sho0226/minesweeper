@@ -18,7 +18,7 @@ const Home = () => {
     );
   };
 
-  const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard'>('Easy');
+  const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard' | 'Custom'>('Easy');
 
   const generateboard = (x: number, y: number, fill: number) =>
     [...Array(y)].map(() => [...Array(x)].map(() => fill));
@@ -32,13 +32,17 @@ const Home = () => {
   } else if (difficulty === 'Normal') {
     board = generateboard(16, 16, -1);
     bombcount = 40;
-  } else {
+  } else if (difficulty === 'Hard') {
     board = generateboard(30, 16, -1);
     bombcount = 99;
+  } else {
+    board = generateboard(9, 9, -1);
+    bombcount = 10;
   }
+
   const [bombMap, setBombMap] = useState(bombboard);
   const [userIn, setUserIn] = useState(inputboard);
-  const difficultResetgame = (difficulty: 'Easy' | 'Normal' | 'Hard') => {
+  const difficultResetgame = (difficulty: 'Easy' | 'Normal' | 'Hard' | 'Custom') => {
     console.log(difficulty);
     if (difficulty === 'Easy') {
       bombboard = generateboard(9, 9, 0);
@@ -52,9 +56,15 @@ const Home = () => {
       setCount(0);
       setBombMap(bombboard);
       setUserIn(inputboard);
-    } else {
+    } else if (difficulty === 'Hard') {
       bombboard = generateboard(30, 16, 0);
       inputboard = generateboard(30, 16, 0);
+      setCount(0);
+      setBombMap(bombboard);
+      setUserIn(inputboard);
+    } else {
+      bombboard = generateboard(9, 9, 0);
+      inputboard = generateboard(9, 9, 0);
       setCount(0);
       setBombMap(bombboard);
       setUserIn(inputboard);
@@ -228,6 +238,10 @@ const Home = () => {
     setDifficulty('Hard');
     difficultResetgame('Hard');
   };
+  const handleCustomClick = () => {
+    setDifficulty('Custom');
+    difficultResetgame('Custom');
+  };
 
   console.log('board');
   console.table(board);
@@ -256,6 +270,12 @@ const Home = () => {
           onClick={handleHardClick}
         >
           上級
+        </a>
+        <a
+          className={`${styles.levelLink} ${difficulty === 'Custom' ? styles.active : ''}`}
+          onClick={handleCustomClick}
+        >
+          カスタム
         </a>
       </div>
       <div className={styles.minesweepercontainer}>
