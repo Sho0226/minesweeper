@@ -277,25 +277,26 @@ const Home = () => {
           onClick={handleCustomClick}
         >
           カスタム
-        </a>
-        <span
-          className={styles.customtext}
-          style={{ display: difficulty === 'Custom' ? '' : 'none' }}
-        >
-          <a>
-            幅：
-            <input type="text" onChange={(event) => {}} />
-          </a>
-          <a>
-            高さ：
-            <input type="text" onChange={(event) => {}} />
-          </a>
-          <a>
-            爆弾数：
-            <input type="text" onChange={(event) => {}} />
-          </a>
-        </span>
+        </a>{' '}
       </div>
+
+      <span
+        className={styles.customtext}
+        style={{ display: difficulty === 'Custom' ? '' : 'none' }}
+      >
+        <a>
+          幅：
+          <input type="text" onChange={(event) => {}} />
+        </a>
+        <a>
+          高さ：
+          <input type="text" onChange={(event) => {}} />
+        </a>
+        <a>
+          爆弾数：
+          <input type="text" onChange={(event) => {}} />
+        </a>
+      </span>
 
       <div className={styles.minesweepercontainer}>
         <div
