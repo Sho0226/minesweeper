@@ -253,6 +253,7 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <div className={styles.difficulty}>
+        {' '}
         <a
           className={`${styles.levelLink} ${difficulty === 'Easy' ? styles.active : ''}`}
           onClick={handleEasyClick}
@@ -277,19 +278,23 @@ const Home = () => {
         >
           カスタム
         </a>
-
-        <a>
-          幅：
-          <input type="text" onChange={(event) => {}} />
-        </a>
-        <a>
-          高さ：
-          <input type="text" onChange={(event) => {}} />
-        </a>
-        <a>
-          爆弾数：
-          <input type="text" onChange={(event) => {}} />
-        </a>
+        <span
+          className={styles.customtext}
+          style={{ display: difficulty === 'Custom' ? '' : 'none' }}
+        >
+          <a>
+            幅：
+            <input type="text" onChange={(event) => {}} />
+          </a>
+          <a>
+            高さ：
+            <input type="text" onChange={(event) => {}} />
+          </a>
+          <a>
+            爆弾数：
+            <input type="text" onChange={(event) => {}} />
+          </a>
+        </span>
       </div>
 
       <div className={styles.minesweepercontainer}>

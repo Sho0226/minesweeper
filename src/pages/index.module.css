@@ -397,3 +397,9 @@
   font-weight: bold;
   color: #444;
 }
+
+.customtext {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  color: #333;
+}
