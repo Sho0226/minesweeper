@@ -19,41 +19,47 @@ const Home = () => {
   };
 
   const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard'>('Easy');
-  const resetgame = () => {
-    setCount(0);
-    const newbomb = bombboard;
-    setBombMap(newbomb);
-    const newinput = inputboard;
-    setUserIn(newinput);
-  };
-
-  let bombcount: number;
-  let board: number[][];
-  let bombboard: number[][];
-  let inputboard: number[][];
 
   const generateboard = (x: number, y: number, fill: number) =>
     [...Array(y)].map(() => [...Array(x)].map(() => fill));
-
+  let board = generateboard(9, 9, -1);
+  let bombcount = 10;
+  let inputboard = generateboard(9, 9, 0);
+  let bombboard = generateboard(9, 9, 0);
   if (difficulty === 'Easy') {
     board = generateboard(9, 9, -1);
-    bombboard = generateboard(9, 9, 0);
-    inputboard = generateboard(9, 9, 0);
     bombcount = 10;
   } else if (difficulty === 'Normal') {
     board = generateboard(16, 16, -1);
-    bombboard = generateboard(16, 16, 0);
-    inputboard = generateboard(16, 16, 0);
     bombcount = 40;
   } else {
-    board = generateboard(16, 30, -1);
-    bombboard = generateboard(16, 30, 0);
-    inputboard = generateboard(16, 30, 0);
+    board = generateboard(30, 16, -1);
     bombcount = 99;
   }
-
   const [bombMap, setBombMap] = useState(bombboard);
   const [userIn, setUserIn] = useState(inputboard);
+  const difficultResetgame = (difficulty: 'Easy' | 'Normal' | 'Hard') => {
+    console.log(difficulty);
+    if (difficulty === 'Easy') {
+      bombboard = generateboard(9, 9, 0);
+      inputboard = generateboard(9, 9, 0);
+      setCount(0);
+      setBombMap(bombboard);
+      setUserIn(inputboard);
+    } else if (difficulty === 'Normal') {
+      bombboard = generateboard(16, 16, 0);
+      inputboard = generateboard(16, 16, 0);
+      setCount(0);
+      setBombMap(bombboard);
+      setUserIn(inputboard);
+    } else {
+      bombboard = generateboard(30, 16, 0);
+      inputboard = generateboard(30, 16, 0);
+      setCount(0);
+      setBombMap(bombboard);
+      setUserIn(inputboard);
+    }
+  };
 
   const updateboard = () => {
     bombMap.forEach((row, i) => {
@@ -146,7 +152,7 @@ const Home = () => {
 
     for (const direct of directions) {
       const [I, J] = direct;
-      if (j + J >= 0 && j + J < board.length && i + I >= 0 && j + J < board[0].length) {
+      if (j + J >= 0 && j + J < board[0].length && i + I >= 0 && i + I < board.length) {
         if (bombMap[i + I] !== undefined && bombMap[i + I][j + J] !== undefined) {
           if (bombMap[i + I][j + J] === 1) {
             aroundcount++;
@@ -162,7 +168,7 @@ const Home = () => {
       userIn[i][j] = 1;
       for (const direct of directions) {
         const [I, J] = direct;
-        if (j + J >= 0 && j + J < board.length && i + I >= 0 && i + I < board[0].length) {
+        if (j + J >= 0 && j + J < board[0].length && i + I >= 0 && i + I < board.length) {
           if (bombMap[i + I][j + J] === 1 && (userIn[i][j] === 2 || userIn[i][j] === 3)) {
             userIn[i][j] = 0;
           }
@@ -211,37 +217,25 @@ const Home = () => {
 
   const handleEasyClick = () => {
     setDifficulty('Easy');
-    const newbomb = bombboard;
-    setBombMap(newbomb);
-    const newinput = inputboard;
-    setUserIn(newinput);
-
-    resetgame();
+    difficultResetgame('Easy');
   };
-
   const handleNormalClick = () => {
     setDifficulty('Normal');
-
-    const newbomb = bombboard;
-    setBombMap(newbomb);
-    const newinput = inputboard;
-    setUserIn(newinput);
-
-    resetgame();
+    difficultResetgame('Normal');
   };
 
   const handleHardClick = () => {
     setDifficulty('Hard');
-
-    resetgame();
+    difficultResetgame('Hard');
   };
 
+  console.log('board');
   console.table(board);
+  console.log('bombMap');
   console.table(bombMap);
+  console.log('userIn');
   console.table(userIn);
-  console.table(bombboard);
-  console.table(inputboard);
-
+  console.log('bombboard');
   return (
     <div className={styles.container}>
       <div className={styles.difficulty}>
@@ -284,7 +278,7 @@ const Home = () => {
           <div className={styles.boardcontainer}>
             <div
               className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''}`}
-              onClick={resetgame}
+              onClick={() => difficultResetgame(difficulty)}
             >
               <div className={styles.flagflame}>
                 <div className={styles.flagboard}>
