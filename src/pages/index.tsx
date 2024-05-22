@@ -21,8 +21,10 @@ const Home = () => {
   const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard'>('Easy');
   const resetgame = () => {
     setCount(0);
-    setBombMap(bombboard);
-    setUserIn(inputboard);
+    const newbomb = bombboard;
+    setBombMap(newbomb);
+    const newinput = inputboard;
+    setUserIn(newinput);
   };
 
   let bombcount: number;
@@ -209,12 +211,21 @@ const Home = () => {
 
   const handleEasyClick = () => {
     setDifficulty('Easy');
+    const newbomb = bombboard;
+    setBombMap(newbomb);
+    const newinput = inputboard;
+    setUserIn(newinput);
 
     resetgame();
   };
 
   const handleNormalClick = () => {
     setDifficulty('Normal');
+
+    const newbomb = bombboard;
+    setBombMap(newbomb);
+    const newinput = inputboard;
+    setUserIn(newinput);
 
     resetgame();
   };
@@ -228,6 +239,8 @@ const Home = () => {
   console.table(board);
   console.table(bombMap);
   console.table(userIn);
+  console.table(bombboard);
+  console.table(inputboard);
 
   return (
     <div className={styles.container}>
