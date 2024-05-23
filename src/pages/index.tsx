@@ -21,7 +21,7 @@ const Home = () => {
   const [difficulty, setDifficulty] = useState<'Easy' | 'Normal' | 'Hard' | 'Custom'>('Easy');
   const [width, setWidth] = useState(9);
   const [height, setHeight] = useState(9);
-  const [bombs, setBombs] = useState(10);
+  const [bombs, setBombs] = useState('');
   const [inputWidth, setInputWidth] = useState('');
   const [inputHeight, setInputHeight] = useState('');
   const [inputBombs, setInputBombs] = useState('');
@@ -45,7 +45,7 @@ const Home = () => {
     bombcount = 99;
   } else {
     board = generateboard(width, height, -1);
-    bombcount = bombs;
+    bombcount = Number(bombs);
   }
 
   const [bombMap, setBombMap] = useState(bombboard);
@@ -80,10 +80,14 @@ const Home = () => {
     }
   };
   const handleUpdateClick = () => {
+    if (Number(inputWidth) > 100 || Number(inputHeight) > 100 || Number(inputBombs) > 10000) {
+      alert('幅は100以下、高さは100以下、爆弾の数は10000以下にしてください');
+      return;
+    }
     difficultResetgame('Custom');
     setWidth(Number(inputWidth));
     setHeight(Number(inputHeight));
-    setBombs(Number(inputBombs));
+    setBombs(inputBombs);
 
     console.log('幅:', width, '高さ:', height, '爆弾数:', bombs);
   };
