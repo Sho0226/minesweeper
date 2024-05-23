@@ -80,8 +80,13 @@ const Home = () => {
     }
   };
   const handleUpdateClick = () => {
+    if (Number(inputWidth) < 1 || Number(inputHeight) < 1 || Number(inputBombs) < 1) {
+      alert('Value must be greater than or equal to 1.');
+      return;
+    }
+
     if (Number(inputWidth) > 100 || Number(inputHeight) > 100 || Number(inputBombs) > 10000) {
-      alert('幅は100以下、高さは100以下、爆弾の数は10000以下にしてください');
+      alert('Value must be less than or equal to 100.');
       return;
     }
     difficultResetgame('Custom');
