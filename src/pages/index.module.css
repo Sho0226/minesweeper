@@ -68,14 +68,10 @@
 .boardstylecustom {
   display: flex;
   flex-wrap: wrap;
-  width: 900px;
-  height: 480px;
   background-color: #c6c6c6;
 }
 
 .boardflamecustom {
-  width: 912px;
-  height: 492px;
   border-top: 6px solid gray;
   border-right: 6px solid white;
   border-bottom: 6px solid white;
@@ -137,7 +133,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 912px;
   height: 74px;
   padding: 0 8px;
   margin-bottom: 10px;
@@ -153,7 +148,7 @@
   align-items: center;
   justify-content: center;
   width: 310px;
-  height: 400px;
+  height: 392px;
   background-color: #c6c6c6;
   border-top: 6px solid white;
   border-right: 6px solid gray;
@@ -167,7 +162,7 @@
   align-items: center;
   justify-content: center;
   width: 520px;
-  height: 620px;
+  height: 602px;
   background-color: #c6c6c6;
   border-top: 6px solid white;
   border-right: 6px solid gray;
@@ -181,7 +176,7 @@
   align-items: center;
   justify-content: center;
   width: 940px;
-  height: 620px;
+  height: 602px;
   background-color: #c6c6c6;
   border-top: 6px solid white;
   border-right: 6px solid gray;
@@ -194,8 +189,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 940px;
-  height: 620px;
   background-color: #c6c6c6;
   border-top: 6px solid white;
   border-right: 6px solid gray;
@@ -230,16 +223,6 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  background-color: gray;
-}
-
-.resetoutflamecustom {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  margin: 346px;
   background-color: gray;
 }
 

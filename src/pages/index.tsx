@@ -359,11 +359,17 @@ const Home = () => {
         </div>
         <div
           className={`${difficulty === 'Easy' ? styles.boardoutsideflame1 : ''} ${difficulty === 'Normal' ? styles.boardoutsideflame2 : ''} ${difficulty === 'Hard' ? styles.boardoutsideflame3 : ''} ${difficulty === 'Custom' ? styles.boardoutsideflame3 : ''}`}
+          style={
+            difficulty === 'Custom'
+              ? { width: `${width * 30 + 40}px`, height: `${height * 30 + 122}px` }
+              : {}
+          }
         >
           <div className={styles.boardcontainer}>
             <div
               className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''} ${difficulty === 'Custom' ? styles.topflamecustom : ''}`}
               onClick={() => difficultResetgame(difficulty)}
+              style={difficulty === 'Custom' ? { width: `${width * 30 + 12}px` } : {}}
             >
               <div className={styles.flagflame}>
                 <div className={styles.flagboard}>
@@ -394,9 +400,19 @@ const Home = () => {
             </div>
             <div
               className={`${difficulty === 'Easy' ? styles.boardflame1 : ''} ${difficulty === 'Normal' ? styles.boardflame2 : ''} ${difficulty === 'Hard' ? styles.boardflame3 : ''} ${difficulty === 'Custom' ? styles.boardflamecustom : ''}`}
+              style={
+                difficulty === 'Custom'
+                  ? { width: `${width * 30 + 12}px`, height: `${height * 30 + 12}px` }
+                  : {}
+              }
             >
               <div
                 className={`${difficulty === 'Easy' ? styles.boardstyle1 : ''} ${difficulty === 'Normal' ? styles.boardstyle2 : ''} ${difficulty === 'Hard' ? styles.boardstyle3 : ''} ${difficulty === 'Custom' ? styles.boardstylecustom : ''}`}
+                style={
+                  difficulty === 'Custom'
+                    ? { width: `${width * 30}px`, height: `${height * 30}px` }
+                    : {}
+                }
               >
                 {board.map((row, y) =>
                   row.map((cell, x) => {
