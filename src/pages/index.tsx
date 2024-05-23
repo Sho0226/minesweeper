@@ -22,6 +22,9 @@ const Home = () => {
   const [width, setWidth] = useState(9);
   const [height, setHeight] = useState(9);
   const [bombs, setBombs] = useState(10);
+  const [inputWidth, setInputWidth] = useState(width);
+  const [inputHeight, setInputHeight] = useState(height);
+  const [inputBombs, setInputBombs] = useState(bombs);
 
   const generateboard = (x: number, y: number, fill: number) =>
     [...Array(y)].map(() => [...Array(x)].map(() => fill));
@@ -69,8 +72,8 @@ const Home = () => {
       setBombMap(bombboard);
       setUserIn(inputboard);
     } else {
-      bombboard = generateboard(30, 16, 0);
-      inputboard = generateboard(30, 16, 0);
+      bombboard = generateboard(width, height, 0);
+      inputboard = generateboard(width, height, 0);
       setCount(0);
       setBombMap(bombboard);
       setUserIn(inputboard);
@@ -78,6 +81,9 @@ const Home = () => {
   };
   const handleUpdateClick = () => {
     difficultResetgame('Custom');
+    setWidth(inputWidth);
+    setHeight(inputHeight);
+    setBombs(inputBombs);
 
     console.log('幅:', width, '高さ:', height, '爆弾数:', bombs);
   };
@@ -302,8 +308,8 @@ const Home = () => {
             className={styles.inputtext}
             min="1"
             max="100"
-            value={width}
-            onChange={(e) => setWidth(Number(e.target.value))}
+            value={inputWidth}
+            onChange={(e) => setInputWidth(Number(e.target.value))}
           />
         </a>
         <a>
@@ -313,8 +319,8 @@ const Home = () => {
             className={styles.inputtext}
             min="1"
             max="100"
-            value={height}
-            onChange={(e) => setHeight(Number(e.target.value))}
+            value={inputHeight}
+            onChange={(e) => setInputHeight(Number(e.target.value))}
           />
         </a>
         <a>
@@ -324,8 +330,8 @@ const Home = () => {
             className={styles.inputtext}
             min="1"
             max="10000"
-            value={bombs}
-            onChange={(e) => setBombs(Number(e.target.value))}
+            value={inputBombs}
+            onChange={(e) => setInputBombs(Number(e.target.value))}
           />
         </a>
         <button
@@ -337,7 +343,6 @@ const Home = () => {
           更新
         </button>
       </span>
-
       <div className={styles.minesweepercontainer}>
         <div
           className={styles.gameoverboardflame}
