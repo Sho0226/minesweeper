@@ -79,20 +79,26 @@ const Home = () => {
       setUserIn(inputboard);
     }
   };
+
   const handleUpdateClick = () => {
     if (Number(inputWidth) < 1 || Number(inputHeight) < 1 || Number(inputBombs) < 1) {
       alert('Value must be greater than or equal to 1.');
       return;
     }
 
-    if (Number(inputWidth) > 100 || Number(inputHeight) > 100 || Number(inputBombs) > 10000) {
+    if (Number(inputWidth) > 100 || Number(inputHeight) > 100) {
       alert('Value must be less than or equal to 100.');
       return;
     }
-    difficultResetgame('Custom');
+    if (Number(inputBombs) > 10000) {
+      alert('Value must be less than or equal to 10000.');
+      return;
+    }
+
     setWidth(Number(inputWidth));
     setHeight(Number(inputHeight));
     setBombs(inputBombs);
+    difficultResetgame('Custom');
 
     console.log('幅:', width, '高さ:', height, '爆弾数:', bombs);
   };
@@ -343,16 +349,11 @@ const Home = () => {
             onChange={(e) => setInputBombs(e.target.value)}
           />
         </a>
-        <button
-          type="button"
-          className={styles.update}
-          data-loading-text="ダウンロード中..."
-          onClick={handleUpdateClick}
-        >
+        <button type="button" className={styles.update} onClick={handleUpdateClick}>
           更新
         </button>
       </span>
-      <div className={styles.minesweepercontainer}>
+      {/* <div className={styles.minesweepercontainer}>
         <div
           className={styles.gameoverboardflame}
           style={{ display: isClear || isFailure ? '' : 'none' }}
@@ -365,110 +366,110 @@ const Home = () => {
               回避失敗
             </span>
           </div>
-        </div>
-        <div
-          className={`${difficulty === 'Easy' ? styles.boardoutsideflame1 : ''} ${difficulty === 'Normal' ? styles.boardoutsideflame2 : ''} ${difficulty === 'Hard' ? styles.boardoutsideflame3 : ''} ${difficulty === 'Custom' ? styles.boardoutsideflame3 : ''}`}
-          style={
-            difficulty === 'Custom'
-              ? {
-                  width: width <= 8 ? '280px' : `${width * 30 + 40}px`,
-                  height: `${height * 30 + 122}px`,
-                }
-              : {}
-          }
-        >
-          <div className={styles.boardcontainer}>
-            <div
-              className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''} ${difficulty === 'Custom' ? styles.topflamecustom : ''}`}
-              onClick={() => difficultResetgame(difficulty)}
-              style={
-                difficulty === 'Custom'
-                  ? { width: width <= 8 ? '252px' : `${width * 30 + 12}px` }
-                  : {}
+        </div> */}
+      <div
+        className={`${difficulty === 'Easy' ? styles.boardoutsideflame1 : ''} ${difficulty === 'Normal' ? styles.boardoutsideflame2 : ''} ${difficulty === 'Hard' ? styles.boardoutsideflame3 : ''} ${difficulty === 'Custom' ? styles.boardoutsideflame3 : ''}`}
+        style={
+          difficulty === 'Custom'
+            ? {
+                width: width <= 8 ? '280px' : `${width * 30 + 40}px`,
+                height: `${height * 30 + 122}px`,
               }
-            >
-              <div className={styles.flagflame}>
-                <div className={styles.flagboard}>
-                  <span className={styles.digit}>{bombcount - NumBoard(10)}</span>
-                </div>
-              </div>
-              <div className={styles.resetoutflame}>
-                <div className={styles.resetflame}>
-                  <div
-                    className={styles.reset}
-                    style={{
-                      backgroundPosition: isClear
-                        ? `-360px 0px`
-                        : isFailure
-                          ? `-390px 0px`
-                          : isPlaying
-                            ? `-330px 0px`
-                            : `-330px 0px`,
-                    }}
-                  />
-                </div>
-              </div>
-              <div className={styles.timerflame}>
-                <div className={styles.timerboard}>
-                  <SevenSegmentDisplay count={count} />
-                </div>
+            : {}
+        }
+      >
+        <div className={styles.boardcontainer}>
+          <div
+            className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''} ${difficulty === 'Custom' ? styles.topflamecustom : ''}`}
+            onClick={() => difficultResetgame(difficulty)}
+            style={
+              difficulty === 'Custom'
+                ? { width: width <= 8 ? '252px' : `${width * 30 + 12}px` }
+                : {}
+            }
+          >
+            <div className={styles.flagflame}>
+              <div className={styles.flagboard}>
+                <span className={styles.digit}>{bombcount - NumBoard(10)}</span>
               </div>
             </div>
+            <div className={styles.resetoutflame}>
+              <div className={styles.resetflame}>
+                <div
+                  className={styles.reset}
+                  style={{
+                    backgroundPosition: isClear
+                      ? `-360px 0px`
+                      : isFailure
+                        ? `-390px 0px`
+                        : isPlaying
+                          ? `-330px 0px`
+                          : `-330px 0px`,
+                  }}
+                />
+              </div>
+            </div>
+            <div className={styles.timerflame}>
+              <div className={styles.timerboard}>
+                <SevenSegmentDisplay count={count} />
+              </div>
+            </div>
+          </div>
+          <div
+            className={`${difficulty === 'Easy' ? styles.boardflame1 : ''} ${difficulty === 'Normal' ? styles.boardflame2 : ''} ${difficulty === 'Hard' ? styles.boardflame3 : ''} ${difficulty === 'Custom' ? styles.boardflamecustom : ''}`}
+            style={
+              difficulty === 'Custom'
+                ? { width: `${width * 30 + 12}px`, height: `${height * 30 + 12}px` }
+                : {}
+            }
+          >
             <div
-              className={`${difficulty === 'Easy' ? styles.boardflame1 : ''} ${difficulty === 'Normal' ? styles.boardflame2 : ''} ${difficulty === 'Hard' ? styles.boardflame3 : ''} ${difficulty === 'Custom' ? styles.boardflamecustom : ''}`}
+              className={`${difficulty === 'Easy' ? styles.boardstyle1 : ''} ${difficulty === 'Normal' ? styles.boardstyle2 : ''} ${difficulty === 'Hard' ? styles.boardstyle3 : ''} ${difficulty === 'Custom' ? styles.boardstylecustom : ''}`}
               style={
                 difficulty === 'Custom'
-                  ? { width: `${width * 30 + 12}px`, height: `${height * 30 + 12}px` }
+                  ? { width: `${width * 30}px`, height: `${height * 30}px` }
                   : {}
               }
             >
-              <div
-                className={`${difficulty === 'Easy' ? styles.boardstyle1 : ''} ${difficulty === 'Normal' ? styles.boardstyle2 : ''} ${difficulty === 'Hard' ? styles.boardstyle3 : ''} ${difficulty === 'Custom' ? styles.boardstylecustom : ''}`}
-                style={
-                  difficulty === 'Custom'
-                    ? { width: `${width * 30}px`, height: `${height * 30}px` }
-                    : {}
-                }
-              >
-                {board.map((row, y) =>
-                  row.map((cell, x) => {
-                    if (isFailure && bombMap[y][x] === 1) {
-                      return (
-                        <div
-                          className={`${styles.cellstyle} ${styles.samplestyle} `}
-                          key={`${x}-${y}`}
-                          onClick={() => clickHandler(x, y)}
-                          onContextMenu={(event) => RightClick(event, x, y)}
-                          style={{
-                            backgroundPosition: `-300px 0px`,
-                            backgroundColor: bombMap[y][x] === 1 && userIn[y][x] === 1 ? `red` : '',
-                          }}
-                        />
-                      );
-                    } else {
-                      return (
-                        <div
-                          className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : cell === 9 || cell === 10 ? `${styles.stonestyle} ${styles.flag} ${styles.question}` : ''}`}
-                          key={`${x}-${y}`}
-                          onClick={() => clickHandler(x, y)}
-                          onContextMenu={(event) => RightClick(event, x, y)}
-                          style={{
-                            backgroundPosition:
-                              cell === 9 || cell === 10
-                                ? `${-22.9 * (cell - 1)}px 0px`
-                                : `${-30 * (cell - 1)}px 0px`,
-                          }}
-                        />
-                      );
-                    }
-                  }),
-                )}
-              </div>
+              {board.map((row, y) =>
+                row.map((cell, x) => {
+                  if (isFailure && bombMap[y][x] === 1) {
+                    return (
+                      <div
+                        className={`${styles.cellstyle} ${styles.samplestyle} `}
+                        key={`${x}-${y}`}
+                        onClick={() => clickHandler(x, y)}
+                        onContextMenu={(event) => RightClick(event, x, y)}
+                        style={{
+                          backgroundPosition: `-300px 0px`,
+                          backgroundColor: bombMap[y][x] === 1 && userIn[y][x] === 1 ? `red` : '',
+                        }}
+                      />
+                    );
+                  } else {
+                    return (
+                      <div
+                        className={`${styles.cellstyle} ${styles.samplestyle} ${cell === -1 ? styles.stonestyle : cell === 9 || cell === 10 ? `${styles.stonestyle} ${styles.flag} ${styles.question}` : ''}`}
+                        key={`${x}-${y}`}
+                        onClick={() => clickHandler(x, y)}
+                        onContextMenu={(event) => RightClick(event, x, y)}
+                        style={{
+                          backgroundPosition:
+                            cell === 9 || cell === 10
+                              ? `${-22.9 * (cell - 1)}px 0px`
+                              : `${-30 * (cell - 1)}px 0px`,
+                        }}
+                      />
+                    );
+                  }
+                }),
+              )}
             </div>
           </div>
         </div>
       </div>
     </div>
+    // </div>
   );
 };
 export default Home;
