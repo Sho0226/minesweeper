@@ -101,6 +101,11 @@ const Home = () => {
       return;
     }
 
+    if (Number(inputBombs) >= Number(inputWidth) * Number(inputHeight)) {
+      alert('Value must be less than the total number of cells.');
+      return;
+    }
+
     setWidth(Number(inputWidth));
     setHeight(Number(inputHeight));
     setBombs(inputBombs);
