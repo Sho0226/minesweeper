@@ -51,7 +51,11 @@ const Home = () => {
   const [bombMap, setBombMap] = useState(bombboard);
   const [userIn, setUserIn] = useState(inputboard);
 
-  const difficultResetgame = (difficulty: 'Easy' | 'Normal' | 'Hard' | 'Custom') => {
+  const difficultResetgame = (
+    difficulty: 'Easy' | 'Normal' | 'Hard' | 'Custom',
+    newWidth?: number,
+    newHeight?: number,
+  ) => {
     console.log(difficulty);
     if (difficulty === 'Easy') {
       bombboard = generateboard(9, 9, 0);
@@ -72,11 +76,13 @@ const Home = () => {
       setBombMap(bombboard);
       setUserIn(inputboard);
     } else {
-      bombboard = generateboard(width, height, 0);
-      inputboard = generateboard(width, height, 0);
+      bombboard = generateboard(newWidth ?? width, newHeight ?? height, 0);
+      inputboard = generateboard(newWidth ?? width, newHeight ?? height, 0);
       setCount(0);
       setBombMap(bombboard);
       setUserIn(inputboard);
+      if (newWidth === undefined) return;
+      if (newHeight === undefined) return;
     }
   };
 
@@ -98,7 +104,7 @@ const Home = () => {
     setWidth(Number(inputWidth));
     setHeight(Number(inputHeight));
     setBombs(inputBombs);
-    difficultResetgame('Custom');
+    difficultResetgame('Custom', Number(inputWidth), Number(inputHeight));
 
     console.log('幅:', width, '高さ:', height, '爆弾数:', bombs);
   };
@@ -381,7 +387,7 @@ const Home = () => {
         <div className={styles.boardcontainer}>
           <div
             className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''} ${difficulty === 'Custom' ? styles.topflamecustom : ''}`}
-            onClick={() => difficultResetgame(difficulty)}
+            onClick={() => difficultResetgame(difficulty, width, height)}
             style={
               difficulty === 'Custom'
                 ? { width: width <= 8 ? '252px' : `${width * 30 + 12}px` }
