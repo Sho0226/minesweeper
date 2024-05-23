@@ -363,6 +363,7 @@ const Home = () => {
           <div className={styles.boardcontainer}>
             <div
               className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''} ${difficulty === 'Custom' ? styles.topflamecustom : ''}`}
+              style={{ width: `${width}px` }}
               onClick={() => difficultResetgame(difficulty)}
             >
               <div className={styles.flagflame}>
