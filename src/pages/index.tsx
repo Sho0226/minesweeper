@@ -363,7 +363,6 @@ const Home = () => {
           <div className={styles.boardcontainer}>
             <div
               className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''} ${difficulty === 'Custom' ? styles.topflamecustom : ''}`}
-              style={{ width: `${width}px` }}
               onClick={() => difficultResetgame(difficulty)}
             >
               <div className={styles.flagflame}>
@@ -371,9 +370,7 @@ const Home = () => {
                   <span className={styles.digit}>{bombcount - NumBoard(10)}</span>
                 </div>
               </div>
-              <div
-                className={`${difficulty === 'Easy' ? styles.resetoutflame1 : ''} ${difficulty === 'Normal' ? styles.resetoutflame2 : ''} ${difficulty === 'Hard' ? styles.resetoutflame3 : ''} ${difficulty === 'Custom' ? styles.resetoutflamecustom : ''}`}
-              >
+              <div className={styles.resetoutflame}>
                 <div className={styles.resetflame}>
                   <div
                     className={styles.reset}

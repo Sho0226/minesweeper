@@ -91,9 +91,10 @@
 .topflame1 {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 282px;
   height: 74px;
+  padding: 0 8px;
   margin-bottom: 10px;
   background-color: #c6c6c6;
   border-top: 6px solid gray;
@@ -105,9 +106,10 @@
 .topflame2 {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 492px;
   height: 74px;
+  padding: 0 8px;
   margin-bottom: 10px;
   background-color: #c6c6c6;
   border-top: 6px solid gray;
@@ -119,9 +121,10 @@
 .topflame3 {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 912px;
   height: 74px;
+  padding: 0 8px;
   margin-bottom: 10px;
   background-color: #c6c6c6;
   border-top: 6px solid gray;
@@ -133,9 +136,10 @@
 .topflamecustom {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 912px;
   height: 74px;
+  padding: 0 8px;
   margin-bottom: 10px;
   background-color: #c6c6c6;
   border-top: 6px solid gray;
@@ -220,33 +224,12 @@
   border-left: 4px solid white;
 }
 
-.resetoutflame1 {
+.resetoutflame {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 48px;
   height: 48px;
-  margin: 0 32px;
-  background-color: gray;
-}
-
-.resetoutflame2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  margin: 136px;
-  background-color: gray;
-}
-
-.resetoutflame3 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  margin: 346px;
   background-color: gray;
 }
 
