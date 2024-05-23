@@ -22,9 +22,9 @@ const Home = () => {
   const [width, setWidth] = useState(9);
   const [height, setHeight] = useState(9);
   const [bombs, setBombs] = useState(10);
-  const [inputWidth, setInputWidth] = useState(width);
-  const [inputHeight, setInputHeight] = useState(height);
-  const [inputBombs, setInputBombs] = useState(bombs);
+  const [inputWidth, setInputWidth] = useState('');
+  const [inputHeight, setInputHeight] = useState('');
+  const [inputBombs, setInputBombs] = useState('');
 
   const generateboard = (x: number, y: number, fill: number) =>
     [...Array(y)].map(() => [...Array(x)].map(() => fill));
@@ -81,9 +81,9 @@ const Home = () => {
   };
   const handleUpdateClick = () => {
     difficultResetgame('Custom');
-    setWidth(inputWidth);
-    setHeight(inputHeight);
-    setBombs(inputBombs);
+    setWidth(Number(inputWidth));
+    setHeight(Number(inputHeight));
+    setBombs(Number(inputBombs));
 
     console.log('幅:', width, '高さ:', height, '爆弾数:', bombs);
   };
@@ -309,7 +309,7 @@ const Home = () => {
             min="1"
             max="100"
             value={inputWidth}
-            onChange={(e) => setInputWidth(Number(e.target.value))}
+            onChange={(e) => setInputWidth(e.target.value)}
           />
         </a>
         <a>
@@ -320,7 +320,7 @@ const Home = () => {
             min="1"
             max="100"
             value={inputHeight}
-            onChange={(e) => setInputHeight(Number(e.target.value))}
+            onChange={(e) => setInputHeight(e.target.value)}
           />
         </a>
         <a>
@@ -331,7 +331,7 @@ const Home = () => {
             min="1"
             max="10000"
             value={inputBombs}
-            onChange={(e) => setInputBombs(Number(e.target.value))}
+            onChange={(e) => setInputBombs(e.target.value)}
           />
         </a>
         <button
@@ -361,7 +361,10 @@ const Home = () => {
           className={`${difficulty === 'Easy' ? styles.boardoutsideflame1 : ''} ${difficulty === 'Normal' ? styles.boardoutsideflame2 : ''} ${difficulty === 'Hard' ? styles.boardoutsideflame3 : ''} ${difficulty === 'Custom' ? styles.boardoutsideflame3 : ''}`}
           style={
             difficulty === 'Custom'
-              ? { width: `${width * 30 + 40}px`, height: `${height * 30 + 122}px` }
+              ? {
+                  width: width <= 8 ? '280px' : `${width * 30 + 40}px`,
+                  height: `${height * 30 + 122}px`,
+                }
               : {}
           }
         >
@@ -369,7 +372,11 @@ const Home = () => {
             <div
               className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''} ${difficulty === 'Custom' ? styles.topflamecustom : ''}`}
               onClick={() => difficultResetgame(difficulty)}
-              style={difficulty === 'Custom' ? { width: `${width * 30 + 12}px` } : {}}
+              style={
+                difficulty === 'Custom'
+                  ? { width: width <= 8 ? '252px' : `${width * 30 + 12}px` }
+                  : {}
+              }
             >
               <div className={styles.flagflame}>
                 <div className={styles.flagboard}>
