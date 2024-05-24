@@ -51,36 +51,33 @@ const Home = () => {
   const [bombMap, setBombMap] = useState(bombboard);
   const [userIn, setUserIn] = useState(inputboard);
 
+  const difficultSet = () => {
+    setCount(0);
+    setBombMap(bombboard);
+    setUserIn(inputboard);
+  };
+
   const difficultResetgame = (
     difficulty: 'Easy' | 'Normal' | 'Hard' | 'Custom',
     newWidth?: number,
     newHeight?: number,
   ) => {
-    console.log(difficulty);
     if (difficulty === 'Easy') {
       bombboard = generateboard(9, 9, 0);
       inputboard = generateboard(9, 9, 0);
-      setCount(0);
-      setBombMap(bombboard);
-      setUserIn(inputboard);
+      difficultSet();
     } else if (difficulty === 'Normal') {
       bombboard = generateboard(16, 16, 0);
       inputboard = generateboard(16, 16, 0);
-      setCount(0);
-      setBombMap(bombboard);
-      setUserIn(inputboard);
+      difficultSet();
     } else if (difficulty === 'Hard') {
       bombboard = generateboard(30, 16, 0);
       inputboard = generateboard(30, 16, 0);
-      setCount(0);
-      setBombMap(bombboard);
-      setUserIn(inputboard);
+      difficultSet();
     } else {
       bombboard = generateboard(newWidth ?? width, newHeight ?? height, 0);
       inputboard = generateboard(newWidth ?? width, newHeight ?? height, 0);
-      setCount(0);
-      setBombMap(bombboard);
-      setUserIn(inputboard);
+      difficultSet();
       if (newWidth === undefined) return;
       if (newHeight === undefined) return;
     }
