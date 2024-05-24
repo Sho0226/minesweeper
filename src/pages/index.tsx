@@ -78,8 +78,7 @@ const Home = () => {
       bombboard = generateboard(newWidth ?? width, newHeight ?? height, 0);
       inputboard = generateboard(newWidth ?? width, newHeight ?? height, 0);
       difficultSet();
-      if (newWidth === undefined) return;
-      if (newHeight === undefined) return;
+      if (newWidth === undefined || newHeight === undefined) return;
     }
   };
 
@@ -107,8 +106,6 @@ const Home = () => {
     setHeight(Number(inputHeight));
     setBombs(inputBombs);
     difficultResetgame('Custom', Number(inputWidth), Number(inputHeight));
-
-    console.log('幅:', width, '高さ:', height, '爆弾数:', bombs);
   };
 
   const updateboard = () => {
