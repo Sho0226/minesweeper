@@ -295,39 +295,6 @@
   border-radius: 5px;
 }
 
-/* .minesweepercontainer {
-  display: flex;
-  flex-direction: row-reverse;
-} */
-
-/* .gameoverboard {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 170px;
-  height: 270px;
-  background-color: #f8f8f8;
-  border-top: 1px solid white;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  border-left: 1px solid white;
-}
-
-.gameoverboardflame {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 172px;
-  height: 272px;
-  margin-left: 30px;
-  background-color: white;
-  border-top: 1px solid white;
-  border-right: 1px solid #aaa;
-  border-bottom: 1px solid #aaa;
-  border-left: 1px solid white;
-  box-shadow: 3px 3px 5px rgb(0 0 0 / 10%);
-} */
-
 .flag,
 .question {
   width: 30px;
@@ -336,12 +303,6 @@
   background-repeat: no-repeat;
   background-size: 322px;
 }
-
-/* .text {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-} */
 
 .difficulty {
   display: flex;

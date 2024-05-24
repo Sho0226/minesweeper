@@ -265,31 +265,16 @@ const Home = () => {
 
   updateboard();
 
-  const handleEasyClick = () => {
-    setDifficulty('Easy');
-    difficultResetgame('Easy');
-  };
-  const handleNormalClick = () => {
-    setDifficulty('Normal');
-    difficultResetgame('Normal');
+  const handleDifficultyClick = (difficulty: 'Easy' | 'Normal' | 'Hard' | 'Custom') => {
+    setDifficulty(difficulty);
+    difficultResetgame(difficulty);
   };
 
-  const handleHardClick = () => {
-    setDifficulty('Hard');
-    difficultResetgame('Hard');
-  };
-  const handleCustomClick = () => {
-    setDifficulty('Custom');
-    difficultResetgame('Custom');
-  };
+  const handleEasyClick = () => handleDifficultyClick('Easy');
+  const handleNormalClick = () => handleDifficultyClick('Normal');
+  const handleHardClick = () => handleDifficultyClick('Hard');
+  const handleCustomClick = () => handleDifficultyClick('Custom');
 
-  console.log('board');
-  console.table(board);
-  console.log('bombMap');
-  console.table(bombMap);
-  console.log('userIn');
-  console.table(userIn);
-  console.log('bombboard');
   return (
     <div className={styles.container}>
       <div className={styles.difficulty}>
@@ -361,20 +346,7 @@ const Home = () => {
           更新
         </button>
       </span>
-      {/* <div className={styles.minesweepercontainer}>
-        <div
-          className={styles.gameoverboardflame}
-          style={{ display: isClear || isFailure ? '' : 'none' }}
-        >
-          <div className={styles.gameoverboard}>
-            <span className={styles.text} style={{ display: isClear ? '' : 'none' }}>
-              回避成功
-            </span>
-            <span className={styles.text} style={{ display: isClear ? 'none' : '' }}>
-              回避失敗
-            </span>
-          </div>
-        </div> */}
+
       <div
         className={`${difficulty === 'Easy' ? styles.boardoutsideflame1 : ''} ${difficulty === 'Normal' ? styles.boardoutsideflame2 : ''} ${difficulty === 'Hard' ? styles.boardoutsideflame3 : ''} ${difficulty === 'Custom' ? styles.boardoutsideflame3 : ''}`}
         style={
@@ -477,7 +449,6 @@ const Home = () => {
         </div>
       </div>
     </div>
-    // </div>
   );
 };
 export default Home;
