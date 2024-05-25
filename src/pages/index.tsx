@@ -299,7 +299,7 @@ const Home = () => {
           onClick={handleCustomClick}
         >
           カスタム
-        </a>{' '}
+        </a>
       </div>
 
       <span
