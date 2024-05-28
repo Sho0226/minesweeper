@@ -52,7 +52,6 @@ const Home = () => {
   const [userIn, setUserIn] = useState(inputboard);
 
   const difficultSet = () => {
-    setCount(0);
     setBombMap(bombboard);
     setUserIn(inputboard);
   };
