@@ -54,6 +54,7 @@ const Home = () => {
   const difficultSet = () => {
     setBombMap(bombboard);
     setUserIn(inputboard);
+    setCount(0);
   };
 
   const difficultResetgame = (
