@@ -1,4 +1,4 @@
-import styles from './DifficultyNavi.module.css';
+import styles from './DifficultyLink.module.css';
 
 type Props = {
   handleEasyClick: () => void;
@@ -8,7 +8,7 @@ type Props = {
   difficulty: 'Easy' | 'Normal' | 'Hard' | 'Custom';
 };
 
-export const Difficulty = ({
+export const DifficultyLink = ({
   handleEasyClick,
   handleNormalClick,
   handleHardClick,

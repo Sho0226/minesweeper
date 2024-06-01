@@ -1,6 +1,9 @@
 import styles from './index.module.css';
 import { useGame } from '../hooks/useGame';
 import { TopArea } from '../components/TopArea/TopArea';
+import { CustomInput } from '../components/CustomInput/CustomInput';
+import { DifficultyLink } from '../components/DifficultyLink/DifficultyLink';
+import { DifficultyOutside } from '../components/DifficultyOutside/DifficultyOutside';
 
 const Home = () => {
   const {
@@ -34,61 +37,11 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <span
-        className={styles.customtext}
-        style={{ display: difficulty === 'Custom' ? '' : 'none' }}
-      >
-        <a>
-          幅：
-          <input
-            type="number"
-            className={styles.inputtext}
-            min="1"
-            max="100"
-            value={inputWidth}
-            onChange={(e) => setInputWidth(e.target.value)}
-          />
-        </a>
-        <a>
-          高さ：
-          <input
-            type="number"
-            className={styles.inputtext}
-            min="1"
-            max="100"
-            value={inputHeight}
-            onChange={(e) => setInputHeight(e.target.value)}
-          />
-        </a>
-        <a>
-          爆弾数：
-          <input
-            type="number"
-            className={styles.inputtext}
-            min="1"
-            max="10000"
-            value={inputBombs}
-            onChange={(e) => setInputBombs(e.target.value)}
-          />
-        </a>
-        <button type="button" className={styles.update} onClick={handleUpdateClick}>
-          更新
-        </button>
-      </span>
-
-      <div
-        className={`${difficulty === 'Easy' ? styles.boardoutsideflame1 : ''} ${difficulty === 'Normal' ? styles.boardoutsideflame2 : ''} ${difficulty === 'Hard' ? styles.boardoutsideflame3 : ''} ${difficulty === 'Custom' ? styles.boardoutsideflame3 : ''}`}
-        style={
-          difficulty === 'Custom'
-            ? {
-                width: width <= 8 ? '280px' : `${width * 30 + 40}px`,
-                height: `${height * 30 + 122}px`,
-              }
-            : {}
-        }
-      >
-        <div className={styles.boardcontainer}>
+      <CustomInput />
+      <div className={styles.boardcontainer}>
+        <DifficultyOutside>
           <TopArea difficulty={difficulty} />
+          <DifficultyLink />
 
           <div
             className={`${difficulty === 'Easy' ? styles.boardflame1 : ''} ${difficulty === 'Normal' ? styles.boardflame2 : ''} ${difficulty === 'Hard' ? styles.boardflame3 : ''} ${difficulty === 'Custom' ? styles.boardflamecustom : ''}`}
@@ -141,7 +94,7 @@ const Home = () => {
               )}
             </div>
           </div>
-        </div>
+        </DifficultyOutside>
       </div>
     </div>
   );
