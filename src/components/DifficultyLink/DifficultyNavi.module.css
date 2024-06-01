@@ -1,0 +1,24 @@
+.difficulty {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.levelLink {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: #23527c;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.levelLink:hover {
+  text-decoration: underline;
+}
+
+.levelLink.active {
+  font-weight: bold;
+  color: #444;
+}

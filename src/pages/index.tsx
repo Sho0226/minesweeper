@@ -1,19 +1,6 @@
 import styles from './index.module.css';
 import { useGame } from '../hooks/useGame';
-
-const SevenSegmentDisplay: React.FC<{ count: number }> = ({ count }) => {
-  const formattedCount = String(count).padStart(3, '0');
-
-  return (
-    <div className={styles.sevensegment}>
-      {formattedCount.split('').map((digit, index) => (
-        <span key={index} className={styles.digit}>
-          {digit}
-        </span>
-      ))}
-    </div>
-  );
-};
+import { TopArea } from '../components/TopArea/TopArea';
 
 const Home = () => {
   const {
@@ -47,34 +34,6 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.difficulty}>
-        {' '}
-        <a
-          className={`${styles.levelLink} ${difficulty === 'Easy' ? styles.active : ''}`}
-          onClick={handleEasyClick}
-        >
-          初級
-        </a>
-        <a
-          className={`${styles.levelLink} ${difficulty === 'Normal' ? styles.active : ''}`}
-          onClick={handleNormalClick}
-        >
-          中級
-        </a>
-        <a
-          className={`${styles.levelLink} ${difficulty === 'Hard' ? styles.active : ''}`}
-          onClick={handleHardClick}
-        >
-          上級
-        </a>
-        <a
-          className={`${styles.levelLink} ${difficulty === 'Custom' ? styles.active : ''}`}
-          onClick={handleCustomClick}
-        >
-          カスタム
-        </a>
-      </div>
-
       <span
         className={styles.customtext}
         style={{ display: difficulty === 'Custom' ? '' : 'none' }}
@@ -129,42 +88,8 @@ const Home = () => {
         }
       >
         <div className={styles.boardcontainer}>
-          <div
-            className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''} ${difficulty === 'Custom' ? styles.topflamecustom : ''}`}
-            onClick={() => difficultResetgame(difficulty, width, height)}
-            style={
-              difficulty === 'Custom'
-                ? { width: width <= 8 ? '252px' : `${width * 30 + 12}px` }
-                : {}
-            }
-          >
-            <div className={styles.flagflame}>
-              <div className={styles.flagboard}>
-                <span className={styles.digit}>{bombcount - NumBoard(10)}</span>
-              </div>
-            </div>
-            <div className={styles.resetoutflame}>
-              <div className={styles.resetflame}>
-                <div
-                  className={styles.reset}
-                  style={{
-                    backgroundPosition: isClear
-                      ? `-360px 0px`
-                      : isFailure
-                        ? `-390px 0px`
-                        : isPlaying
-                          ? `-330px 0px`
-                          : `-330px 0px`,
-                  }}
-                />
-              </div>
-            </div>
-            <div className={styles.timerflame}>
-              <div className={styles.timerboard}>
-                <SevenSegmentDisplay count={count} />
-              </div>
-            </div>
-          </div>
+          <TopArea difficulty={difficulty} />
+
           <div
             className={`${difficulty === 'Easy' ? styles.boardflame1 : ''} ${difficulty === 'Normal' ? styles.boardflame2 : ''} ${difficulty === 'Hard' ? styles.boardflame3 : ''} ${difficulty === 'Custom' ? styles.boardflamecustom : ''}`}
             style={
