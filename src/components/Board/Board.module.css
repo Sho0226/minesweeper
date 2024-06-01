@@ -1,0 +1,34 @@
+.cellstyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: solid 1px;
+  border-color: gray;
+}
+
+.stonestyle {
+  width: 30px;
+  height: 30px;
+  background-color: #c6c6c6;
+  border-top: 4px solid white;
+  border-right: 4px solid gray;
+  border-bottom: 4px solid gray;
+  border-left: 4px solid white;
+}
+
+.flag,
+.question {
+  width: 30px;
+  height: 30px;
+  background-image: url('~/src/assets/images/icons.webp');
+  background-repeat: no-repeat;
+  background-size: 322px;
+}
+
+.samplestyle {
+  width: 30px;
+  height: 30px;
+  background: url('~/src/assets/images/icons.webp') no-repeat;
+}

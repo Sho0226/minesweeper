@@ -18,7 +18,6 @@ type Props = {
   Numboard: (col: number) => number;
 
   count: number;
-  digit: string;
 };
 
 export const TopArea = ({
@@ -32,7 +31,6 @@ export const TopArea = ({
   bombcount,
   Numboard,
   count,
-  digit,
 }: Props) => (
   <div
     className={`${difficulty === 'Easy' ? styles.topflame1 : ''} ${difficulty === 'Normal' ? styles.topflame2 : ''} ${difficulty === 'Hard' ? styles.topflame3 : ''} ${difficulty === 'Custom' ? styles.topflamecustom : ''}`}

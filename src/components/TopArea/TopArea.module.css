@@ -118,3 +118,12 @@
   height: 45px;
   background-color: #000;
 }
+
+.digit {
+  font-size: 30px;
+  font-weight: bold;
+  color: #f00;
+  text-align: center;
+  background: black;
+  border-radius: 5px;
+}

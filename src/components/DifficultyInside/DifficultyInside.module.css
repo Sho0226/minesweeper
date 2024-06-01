@@ -1,0 +1,63 @@
+.boardstyle1 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 270px;
+  height: 270px;
+  background-color: #c6c6c6;
+}
+
+.boardstyle2 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 480px;
+  height: 480px;
+  background-color: #c6c6c6;
+}
+
+.boardstyle3 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 900px;
+  height: 480px;
+  background-color: #c6c6c6;
+}
+
+.boardstylecustom {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #c6c6c6;
+}
+
+.boardflame1 {
+  width: 282px;
+  height: 282px;
+  border-top: 6px solid gray;
+  border-right: 6px solid white;
+  border-bottom: 6px solid white;
+  border-left: 6px solid gray;
+}
+
+.boardflame2 {
+  width: 492px;
+  height: 492px;
+  border-top: 6px solid gray;
+  border-right: 6px solid white;
+  border-bottom: 6px solid white;
+  border-left: 6px solid gray;
+}
+
+.boardflame3 {
+  width: 912px;
+  height: 492px;
+  border-top: 6px solid gray;
+  border-right: 6px solid white;
+  border-bottom: 6px solid white;
+  border-left: 6px solid gray;
+}
+
+.boardflamecustom {
+  border-top: 6px solid gray;
+  border-right: 6px solid white;
+  border-bottom: 6px solid white;
+  border-left: 6px solid gray;
+}
