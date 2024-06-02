@@ -1,4 +1,5 @@
 import styles from './CustomInput.module.css';
+import type { Dispatch, SetStateAction } from 'react';
 
 type Props = {
   setInputWidth: Dispatch<SetStateAction<string>>;

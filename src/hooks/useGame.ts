@@ -7,7 +7,7 @@ export const useGame = () => {
   const [width, setWidth] = useState(9);
   const [height, setHeight] = useState(9);
   const [bombs, setBombs] = useState('');
-  const [inputWidth, setInputWidth] = useState('');
+  const [inputWidth, setInputWidth] = useState<string>('');
   const [inputHeight, setInputHeight] = useState('');
   const [inputBombs, setInputBombs] = useState('');
 
@@ -35,7 +35,7 @@ export const useGame = () => {
 
   const [bombMap, setBombMap] = useState(bombboard);
   const [userIn, setUserIn] = useState(inputboard);
-
+  const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
   const difficultSet = () => {
     setBombMap(bombboard);
     setUserIn(inputboard);
@@ -242,8 +242,6 @@ export const useGame = () => {
       setUserIn(newUserIn);
     }
   };
-
-  const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
 
   updateboard();
 

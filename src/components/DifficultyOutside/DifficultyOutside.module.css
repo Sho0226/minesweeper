@@ -1,5 +1,6 @@
 .boardoutsideflame1 {
   display: flex;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
   width: 310px;
@@ -14,6 +15,7 @@
 
 .boardoutsideflame2 {
   display: flex;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
   width: 520px;
@@ -28,6 +30,7 @@
 
 .boardoutsideflame3 {
   display: flex;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
   width: 940px;
@@ -42,6 +45,7 @@
 
 .boardoutsideflamecustom {
   display: flex;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
   background-color: #c6c6c6;

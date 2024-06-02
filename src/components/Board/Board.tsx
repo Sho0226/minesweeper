@@ -1,27 +1,16 @@
-import styles from "./Board.module.css";
+import styles from './Board.module.css';
 
 type Props = {
   board: number[][];
-  row: number[];
-  cell: number[];
   isFailure: boolean;
   bombMap: number[][];
   userIn: number[][];
   clickHandler: (x: number, y: number) => void;
-  Rightclick: (event: React.MouseEvent, x: number, y: number) => void;
+  RightClick: (event: React.MouseEvent, x: number, y: number) => void;
 };
 
-export const Board = ({
-  board,
-  row,
-  cell,
-  isFailure,
-  bombMap,
-  userIn,
-  clickHandler,
-  Rightclick,
-}:Props) =>
-  (
+export const Board = ({ board, isFailure, bombMap, userIn, clickHandler, RightClick }: Props) => (
+  <div className={styles.board}>
     {board.map((row, y) =>
       row.map((cell, x) => {
         if (isFailure && bombMap[y][x] === 1) {
@@ -55,4 +44,5 @@ export const Board = ({
         }
       }),
     )}
-  );
+  </div>
+);
