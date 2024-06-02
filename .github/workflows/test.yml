@@ -20,5 +20,4 @@ jobs:
       - run: npm install
         if: steps.npm-cache.outputs.cache-hit != 'true'
       - run: npm run lint
-      - run: npm run build
-      - run: npm run dev:next
+      - run: npm run index.tsx
