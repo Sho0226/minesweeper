@@ -34,9 +34,10 @@ export const Board = ({ board, isFailure, bombMap, userIn, clickHandler, RightCl
               onClick={() => clickHandler(x, y)}
               onContextMenu={(event) => RightClick(event, x, y)}
               style={{
+                backgroundSize: cell === 9 || cell === 10 ? '308px' : '420px',
                 backgroundPosition:
                   cell === 9 || cell === 10
-                    ? `${-22.9 * (cell - 1)}px 0px`
+                    ? `${-22 * (cell - 1)}px 0px`
                     : `${-30 * (cell - 1)}px 0px`,
               }}
             />

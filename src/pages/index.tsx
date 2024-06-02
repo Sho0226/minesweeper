@@ -54,7 +54,6 @@ const Home = () => {
         inputBombs={inputBombs}
         difficulty={difficulty}
       />
-      {/* <div className={styles.boardcontainer}> */}
       <DifficultyOutside
         difficulty={difficulty}
         width={width}
@@ -72,7 +71,6 @@ const Home = () => {
         Numboard={NumBoard}
         count={count}
       />
-      {/* </div> */}
     </div>
   );
 };

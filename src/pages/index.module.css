@@ -10,9 +10,3 @@
   padding: 0 0.5rem;
   overflow: auto;
 }
-
-.boardcontainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
