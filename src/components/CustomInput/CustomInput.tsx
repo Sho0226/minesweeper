@@ -30,6 +30,7 @@ export const CustomInput = ({
         className={styles.inputtext}
         min="1"
         max="100"
+        step="1"
         value={inputWidth}
         onChange={(e) => setInputWidth(e.target.value)}
       />
@@ -41,6 +42,7 @@ export const CustomInput = ({
         className={styles.inputtext}
         min="1"
         max="100"
+        step="1"
         value={inputHeight}
         onChange={(e) => setInputHeight(e.target.value)}
       />
@@ -52,6 +54,7 @@ export const CustomInput = ({
         className={styles.inputtext}
         min="1"
         max="10000"
+        step="1"
         value={inputBombs}
         onChange={(e) => setInputBombs(e.target.value)}
       />
