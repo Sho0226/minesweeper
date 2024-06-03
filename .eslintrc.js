@@ -30,7 +30,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
     eqeqeq: 'error',
-    'no-param-reassign': 'error',
+    'no-param-reassign': ['error', { props: false }],
     'object-shorthand': ['error', 'always'],
     'prefer-template': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
