@@ -35,7 +35,10 @@ export const useGame = () => {
 
   const [bombMap, setBombMap] = useState(bombboard);
   const [userIn, setUserIn] = useState(inputboard);
+  const newBombMap = structuredClone(bombMap);
+  const newUserIn = structuredClone(userIn);
   const NumBoard = (col: number) => board.flat().filter((c) => c === col).length;
+
   const difficultSet = () => {
     setBombMap(bombboard);
     setUserIn(inputboard);
@@ -144,7 +147,6 @@ export const useGame = () => {
     let bombcountnow = 0;
 
     if (Num(1) === 0) {
-      const newBombMap = structuredClone(bombMap);
       while (bombcountnow < bombcount) {
         const randomY = Math.floor(Math.random() * newBombMap.length);
         const randomX = Math.floor(Math.random() * newBombMap[0].length);
@@ -155,8 +157,6 @@ export const useGame = () => {
       }
       setBombMap(newBombMap);
     }
-
-    const newUserIn = structuredClone(userIn);
 
     if (board[y][x] === -1 && userIn[y][x] === 0) {
       newUserIn[y][x] = 1;
@@ -189,13 +189,10 @@ export const useGame = () => {
           if (bombMap[i + I][j + J] === 1) {
             aroundcount++;
           }
-          board[i][j] = aroundcount;
         }
       }
     }
-
     board[i][j] = aroundcount;
-
     if (aroundcount === 0) {
       userIn[i][j] = 1;
       for (const direct of directions) {
@@ -204,20 +201,14 @@ export const useGame = () => {
           if (bombMap[i + I][j + J] === 1 && (userIn[i][j] === 2 || userIn[i][j] === 3)) {
             userIn[i][j] = 0;
           }
-          if (
-            userIn[i + I][j + J] === 0 ||
-            userIn[i + I][j + J] === 2 ||
-            userIn[i + I][j + J] === 3
-          ) {
-            if (userIn[i + I][j + J] === 2 || userIn[i + I][j + J] === 3) {
-              userIn[i + I][j + J] = 0;
-            }
-            if (board[i + I][j + J] === -1) {
-              board[i + I][j + J] = aroundcount + 1;
-              userIn[i + I][j + J] = 1;
+          if (userIn[i + I][j + J] !== 1) {
+            userIn[i + I][j + J] = 0;
+          }
+          if (board[i + I][j + J] === -1) {
+            board[i + I][j + J] = aroundcount + 1;
+            userIn[i + I][j + J] = 1;
 
-              arounder(i + I, j + J);
-            }
+            arounder(i + I, j + J);
           }
         }
       }
@@ -228,8 +219,6 @@ export const useGame = () => {
     event.preventDefault();
 
     if (isFailure || isClear) return;
-
-    const newUserIn = structuredClone(userIn);
 
     if (board[y][x] === -1 && newUserIn[y][x] === 0) {
       newUserIn[y][x] = 3;
