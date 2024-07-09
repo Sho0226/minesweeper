@@ -185,7 +185,7 @@ export const useGame = () => {
     for (const direct of directions) {
       const [I, J] = direct;
       if (j + J >= 0 && j + J < board[0].length && i + I >= 0 && i + I < board.length) {
-        if (bombMap[i + I] !== undefined && bombMap[i + I][j + J] !== undefined) {
+        if (bombMap[i + I]?.[j + J] !== undefined) {
           if (bombMap[i + I][j + J] === 1) {
             aroundcount++;
           }
