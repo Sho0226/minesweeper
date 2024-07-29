@@ -48,7 +48,7 @@
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* はみ出しを防ぐ */
+  overflow: hidden;
   background-color: #c6c6c6;
   border-top: 6px solid white;
   border-right: 6px solid gray;
